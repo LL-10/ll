@@ -155,8 +155,8 @@ const data = [
 			 * reference (true if all the references of the compared object point to this object) and
 			 * deep (true if all circular reference in both objects point to the same place in theirselves).
 			 *
-			 * @function Object#compare
-			 * @argument {Object} object The object to compare this object to.
+			 * @function Object&period;prototype#compare
+			 * @argument {Object} object the object to compare this object to
 			 * @argument {boolean} [detailed=false]
 			 * @return {boolean|Object}
 			 *
@@ -173,7 +173,7 @@ const data = [
 			/**
 			 * Check if this object has the specified key.
 			 *
-			 * @function Object#has
+			 * @function Object&period;prototype#has
 			 * @argument {String|Symbol} key
 			 * @return {boolean}
 			 *
@@ -189,7 +189,7 @@ const data = [
 			/**
 			 * Return a non-referenced deep clone of this object.
 			 *
-			 * @function Object#clone
+			 * @function Object&period;prototype#clone
 			 * @return {Object}
 			 *
 			 * @example {a: {x: 'foo'}, b: 2}.clone();
@@ -258,7 +258,7 @@ const data = [
 			 * @description If the array contains non-array objects, the reference to them will be shared.
 			 * To avoid this behaviour, use Object.clone(this) instead.
 			 *
-			 * @function Array#clone
+			 * @function Array&period;prototype#clone
 			 * @return {Array}
 			 *
 			 * @example [[1, 0], 2].clone();
@@ -273,7 +273,7 @@ const data = [
 			 * Removes the first occurency of an element from an array
 			 * and returns its index or -1.
 			 *
-			 * @function Array#pull
+			 * @function Array&period;prototype#pull
 			 * @argument {*} element
 			 * @return {number}
 			 *
@@ -292,7 +292,7 @@ const data = [
 			/**
 			 * Pushes an item to an array, only if it does not already exist in the array.
 			 *
-			 * @function Array#pushUnique
+			 * @function Array&period;prototype#pushUnique
 			 * @argument {*} element
 			 * @return {Boolean}
 			 *
@@ -319,11 +319,13 @@ const data = [
 		object: Math,
 		properties: [
 			/**
-			 * Returns the sum of the given arguments
+			 * Return the sum of the given arguments.
 			 *
 			 * @function Math#sum
 			 * @argument {...number} addends
 			 * @return {number}
+			 *
+			 * @example Math.sum(1, 2, 3, 4); // 10
 			 */
 			{
 				name: 'sum',
@@ -332,9 +334,13 @@ const data = [
 				}
 			},
 			/**
-			 * Returns the product of the given arguments
+			 * Return the product of the given arguments.
+			 *
+			 * @function Math#prod
 			 * @argument {...number} factors
 			 * @return {number}
+			 *
+			 * @example Math.prod(1, 2, 3, 4); // 24
 			 */
 			{
 				name: 'prod',
@@ -343,7 +349,9 @@ const data = [
 				}
 			},
 			/**
-			 * Stores a pre-calculated PI / 180 value.
+			 * Store a pre-calculated PI / 180 value.
+			 *
+			 * @constant Math#PI180
 			 * @type {number}
 			 */
 			{
@@ -351,9 +359,13 @@ const data = [
 				value: Math.PI / 180
 			},
 			/**
-			 * Converts degrees to radians.
+			 * Convert degrees to radians.
+			 *
+			 * @function Math#radians
 			 * @argument {number} degrees
-			 * @return {number} radians
+			 * @return {number}
+			 *
+			 * @example Math.radians(90); // 1.5707963267948966
 			 */
 			{
 				name: 'radians',
@@ -362,9 +374,13 @@ const data = [
 				}
 			},
 			/**
-			 * Converts radians to degrees.
+			 * Convert radians to degrees.
+			 *
+			 * @function Math#degrees
 			 * @argument {number} radians
-			 * @return {number} degrees
+			 * @return {number}
+			 *
+			 * @example Math.degrees(1); // 57.29577951308232
 			 */
 			{
 				name: 'degrees',
@@ -373,49 +389,60 @@ const data = [
 				}
 			},
 			/**
-			 * Calculates the distance from the first point to the second point.
-			 * @argument {Number[]} x the coordinates of the first point.
-			 * @argument {Number[]} y the coordinates of the second point.
-			 * @return {number} the distance between the two points.
+			 * Calculate the distance from the first point to the second point.
+			 *
+			 * @function Math#distance
+			 * @argument {Number[]} x the coordinates of the first point
+			 * @argument {Number[]} y the coordinates of the second point
+			 * @exception {TypeError} Both arguments must be arrays.
+			 * @exception {Error} Both points must have the same number of coordinates.
+			 * @return {number}
+			 *
+			 * @example Math.distance([1, 2], [4, 6]); // 5
+			 * @example Math.distance([8, 1, 2], [-4, 4, 6]); // 13
+			 * @example Math.distance(1, [4, 6]); // TypeError: Both arguments must be arrays
+			 * @example Math.distance([1, 2, 3, 4], [4, 6]); // Error: Both points must have the same number of coordinates
 			 */
 			{
 				name: 'distance',
 				value: function(a, b) {
 					if (!(a instanceof Array) || !(b instanceof Array))
-						throw new Error('Both arguments of Math.distance() must be arrays');
+						throw new TypeError('Both arguments must be arrays');
 					if (a.length !== b.length)
 						throw new Error('Both points must have the same number of coordinates');
 					return Math.sqrt(Math.sum(...a.map((element, index) => Math.pow(a[index] - b[index], 2))));
 				}
 			},
 			/**
-			 * Clamps the value to within the min and max.
-			 * If min > max, then their values are automatically swapped.
+			 * @summary Clamp the value to within the min and max.
+			 * @description If min > max, then their values are automatically swapped.
+			 *
+			 * @function Math#clamp
 			 * @argument {number} value
 			 * @argument {number} min
 			 * @argument {number} max
 			 * @return {number}
 			 *
-			 * @example
-			 * Math.clamp(3,4,5); //4
-			 * Math.clamp(5,0,10); //5
+			 * @example Math.clamp(3, 4, 5); // 4
+			 * @example Math.clamp(5, 0, 10); // 5
 			 */
 			{
 				name: 'clamp',
 				value: function(value, min, max) {
 					[min, max] = [min, max].sort();
-					return Math.min(Math.max(value,min), max);
+					return Math.min(Math.max(value, min), max);
 				}
 			},
 			/**
-			 * Returns a random integer in the specified range
-			 * If min > max, then their values are automatically swapped.
-			 * @argument {number} min=0
+			 * @summary Return a random integer in the specified range.
+			 * @description If min > max, then their values are automatically swapped.
+			 *
+			 * @function Math#randomInt
+			 * @argument {number} [min=0]
 			 * @argument {number} max
 			 * @return {number}
 			 *
-			 * @example
-			 * Math.randomInt(5, 6);
+			 * @example Math.randomInt(4, 6);
 			 */
 			{
 				name: 'randomInt',
@@ -430,21 +457,20 @@ const data = [
 	}
 ];
 
-/**
- * Add the indexOf method to all array objects if it does not already exist
- */
+/** Add the indexOf method to all array objects if it does not already exist */
 if (!Array.prototype.indexOf) {
 	data.push({
 		object: Array.prototype,
 		properties: [
 			/**
-			 * Get the index of the passed item.
-			 * @argument {*} element the element to find the index for.
-			 * @return {number} the index of the passed item or -1 if not found.
+			 * Get the index of the first occurency of an element in this array.
 			 *
-			 * @examples
-			 * ['a','k','x'].indexOf('x'); // 2
-			 * ['a','k','x'].indexOf('b'); // -1
+			 * @function Array&period;prototype#indexOf
+			 * @argument {*} element the element to find the index of
+			 * @return {number} The index of the passed element, or -1 if not found.
+			 *
+			 * @example ['a', 'k', 'x'].indexOf('x'); // 2
+			 * @example ['a', 'k', 'x'].indexOf('b'); // -1
 			 */
 			{
 				name: 'indexOf',
@@ -466,9 +492,9 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
 		properties: [
 			/**
 			 * Add a circle to the current path.
-			 * @argument {number} cx the x coordinate of the center.
-			 * @argument {number} cy the y coordinate of the center.
-			 * @argument {number} radius the radius of the circle.
+			 * @argument {number} cx the x coordinate of the center
+			 * @argument {number} cy the y coordinate of the center
+			 * @argument {number} radius the radius of the circle
 			 */
 			{
 				name: 'circle',
