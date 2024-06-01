@@ -4,5 +4,11 @@
 	"main": "ll.js",
 	"scripts": {
 		"ll": "node ll.js"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.3.0",
+		"eslint": "^9.3.0",
+		"globals": "^15.3.0",
+		"typescript-eslint": "^7.11.0"
 	}
 }
