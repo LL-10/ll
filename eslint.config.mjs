@@ -2,13 +2,19 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 
-
 export default [
 	{
-		files: ["**/*.js"],
+		ignores: [
+			"docs/"
+		]
+	},
+	{
+		files: [
+			"**/*.js"
+		],
 		languageOptions: {
 			sourceType: "commonjs"
-		}
+		},
 	},
 	{
 		languageOptions: {
@@ -16,9 +22,7 @@ export default [
 				...globals.browser,
 				...globals.node
 			}
-		}
-	},
-	{
+		},
 		rules: {
 			"array-callback-return": "error",
 			"no-await-in-loop": "error",
@@ -33,6 +37,9 @@ export default [
 			"no-use-before-define": "error",
 			"no-useless-assignment": "error",
 			"require-atomic-updates": "error"
+		},
+		linterOptions: {
+			reportUnusedDisableDirectives: "error"
 		}
 	},
 	pluginJs.configs.recommended,
