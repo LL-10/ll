@@ -4,7 +4,8 @@
 	"main": "ll.js",
 	"scripts": {
 		"ll": "node ll.js",
-		"lint": "npx eslint ."
+		"lint": "npx eslint .",
+		"doc": "jsdoc **/* -c ./.jsdoc/conf.json"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.3.0",
