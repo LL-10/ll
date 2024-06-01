@@ -1,8 +1,11 @@
-# MacOs
-.DS_Store
-
 # Dependencies
 node_modules
+
+# JsDoc output
+docs
+
+# MacOs
+.DS_Store
 
 # IntelliJ IDEA
 .idea/
