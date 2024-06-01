@@ -1,17 +1,29 @@
 /**
  * An array with stored all the data of the properties
  * to be defined for the different objects
+ * @ignore
  */
 const data = [
 	{
+		/**
+		 * The built-in Object constructor
+		 * @global
+		 * @namespace Object
+		 */
 		object: Object,
 		properties: [
-			/**
-			 * Check if an object contains any circular reference
-			 * @param {Object} object
-			 * @return {boolean}
-			 */
 			{
+				/**
+				 * Check if an object contains any circular reference.
+				 *
+				 * @function Object.isCyclic
+				 * @argument {Object} object
+				 * @return {boolean}
+				 *
+				 * @example Object.isCyclic({a: 1, b: 0}); // false
+				 * @example const o = {}; o.a = o; Object.isCyclic(o); // true
+				 * @example const o = {}, t = {a: o}; o.a = t; Object.isCyclic(o); // true
+				 */
 				name: 'isCyclic',
 				value: function(object) {
 					const checked = [];
@@ -22,30 +34,41 @@ const data = [
 							checked.push(object);
 							for (let key in object)
 								if (object.has(key))
-									return true;
+									return check(object[key]);
 						}
 						return false;
 					}
 					return check(object);
 				}
 			},
-			/**
-			 * Compare two objects by their enumerable properties.
-			 * In detailed mode, if the comparison returns true, return an object with:
-			 * value (the result of the comparison, always true when returned in the detailed object),
-			 * reference (true if all the references of the second object point to the first) and
-			 * deep (true if all circular reference in both objects point to the same place in theirselves).
-			 * @param {Object} object1
-			 * @param {Object} object2
-			 * @param {boolean} [detailed=false]
-			 * @return {boolean|Object}
-			 *
-			 * @examples
-			 * Object.compare({ a: 1, b: 2 }, { b: 2, a: 1 }); // true
-			 * Object.compare({ a: 1, b: 2 }, { x: 'hi' }); // false
-			 * const o = {}, t = {}; o.a = o; t.a = t; Object.compare(o, t, true); //{value: true, reference: false, deep: true}
-			 */
 			{
+				/**
+				 * @function Object.isCyclical
+				 * @deprecated use {@link Object.isCyclic} instead.
+				 */
+				name: 'isCyclical',
+				value: function(object) {
+					return Object.isCyclic(object);
+				}
+			},
+			{
+				/**
+				 * @summary Compare two objects by their enumerable properties.
+				 * @description In detailed mode, if the comparison returns true, return an object with:
+				 * value (the result of the comparison, always true when returned in the detailed object),
+				 * reference (true if all the references of the second object point to the first) and
+				 * deep (true if all circular reference in both objects point to the same place in theirselves).
+				 *
+				 * @function Object.compare
+				 * @argument {Object} object1
+				 * @argument {Object} object2
+				 * @argument {boolean} [detailed=false]
+				 * @return {boolean|Object}
+				 *
+				 * @example Object.compare({ a: 1, b: 2 }, { b: 2, a: 1 }); // true
+				 * @example Object.compare({ a: 1, b: 2 }, { x: 'hi' }); // false
+				 * @example const o = {}, t = {}; o.a = o; t.a = t; Object.compare(o, t, true); // {value: true, reference: false, deep: true}
+				 */
 				name: 'compare',
 				value: function(object1, object2, detailed = false) {
 					const compared = new Map();
@@ -85,12 +108,16 @@ const data = [
 					return detailed?comparison.value?comparison:false:comparison.value;
 				}
 			},
-			/**
-			 * Make a non-referenced deep clone of an object.
-			 * @param {Object} object
-			 * @return {Object}
-			 */
 			{
+				/**
+				 * Make a non-referenced deep clone of an object.
+				 *
+				 * @function Object.clone
+				 * @argument {Object} object
+				 * @return {Object}
+				 *
+				 * @example Object.clone({a: {x: 'foo'}, b: 2});
+				 */
 				name: 'clone',
 				value: function(object) {
 					const clone = [];
@@ -115,22 +142,27 @@ const data = [
 		]
 	},
 	{
+		/**
+		 * Any instance of {@link Object}
+		 * @namespace Object&period;prototype
+		 */
 		object: Object.prototype,
 		properties: [
 			/**
-			 * Compare this to an object by its enumerable properties.
-			 * In detailed mode, if the comparison returns true, return an object with:
+			 * @summary Compare this to an object by its enumerable properties.
+			 * @description In detailed mode, if the comparison returns true, return an object with:
 			 * value (the result of the comparison, always true when returned in the detailed object),
 			 * reference (true if all the references of the compared object point to this object) and
 			 * deep (true if all circular reference in both objects point to the same place in theirselves).
-			 * @param {Object} object The object to compare this one to.
-			 * @param {boolean} [detailed=false]
+			 *
+			 * @function Object#compare
+			 * @argument {Object} object The object to compare this object to.
+			 * @argument {boolean} [detailed=false]
 			 * @return {boolean|Object}
 			 *
-			 * @examples
-			 * { a: 1, b: 2 }.compare({ b: 2, a: 1 }); // true
-			 * { a: 1, b: 2 }.compare({ x: 'hi' }); // false
-			 * const o = {}, t = {}; o.a = o; t.a = t; o.compare(t, true); //{value: true, reference: false, deep: true}
+			 * @example { a: 1, b: 2 }.compare({ b: 2, a: 1 }); // true
+			 * @example { a: 1, b: 2 }.compare({ x: 'hi' }); // false
+			 * @example const o = {}, t = {}; o.a = o; t.a = t; o.compare(t, true); // {value: true, reference: false, deep: true}
 			 */
 			{
 				name: 'compare',
@@ -140,7 +172,13 @@ const data = [
 			},
 			/**
 			 * Check if this object has the specified key.
-			 * @param {String|Symbol} key
+			 *
+			 * @function Object#has
+			 * @argument {String|Symbol} key
+			 * @return {boolean}
+			 *
+			 * @example {a: 1, b: 2}.has('a'); // true
+			 * @example {a: 1, b: 2}.has('c'); // false
 			 */
 			{
 				name: 'has',
@@ -150,7 +188,11 @@ const data = [
 			},
 			/**
 			 * Return a non-referenced deep clone of this object.
+			 *
+			 * @function Object#clone
 			 * @return {Object}
+			 *
+			 * @example {a: {x: 'foo'}, b: 2}.clone();
 			 */
 			{
 				name: 'clone',
@@ -161,13 +203,24 @@ const data = [
 		]
 	},
 	{
+		/**
+		 * The built-in Array constructor
+		 * @global
+		 * @namespace Array
+		 */
 		object: Array,
 		properties: [
 			/**
-			 * Make a non-referenced deep clone of an array.
-			 * If the array contains non-array objects, the reference to them will be shared.
-			 * @param {Array} array
+			 * @summary Make a non-referenced deep clone of an array.
+			 * @description If the array contains non-array objects,
+			 * the reference to them will be shared with the clone.
+			 * To avoid this behaviour, use Object.clone() instead.
+			 *
+			 * @function Array.clone
+			 * @argument {Array} array
 			 * @return {Array}
+			 *
+			 * @example Array.clone([[1, 0], 2]);
 			 */
 			{
 				name: 'clone',
@@ -194,13 +247,21 @@ const data = [
 		]
 	},
 	{
+		/**
+		 * Any instance of {@link Array}
+		 * @namespace Array&period;prototype
+		 */
 		object: Array.prototype,
 		properties: [
 			/**
-			 * Return a non-referenced deep clone of this array.
-			 * If the array contains non-array objects, the reference to them will be shared.
+			 * @summary Return a non-referenced deep clone of this array.
+			 * @description If the array contains non-array objects, the reference to them will be shared.
 			 * To avoid this behaviour, use Object.clone(this) instead.
+			 *
+			 * @function Array#clone
 			 * @return {Array}
+			 *
+			 * @example [[1, 0], 2].clone();
 			 */
 			{
 				name: 'clone',
@@ -209,9 +270,15 @@ const data = [
 				}
 			},
 			/**
-			 * Removes the first occurency of an element from an array, returning the index
-			 * @param {*} element
+			 * Removes the first occurency of an element from an array
+			 * and returns its index or -1.
+			 *
+			 * @function Array#pull
+			 * @argument {*} element
 			 * @return {number}
+			 *
+			 * @example [1, 2, 1].pull(1); // 0
+			 * @example [1, 2].pull(0); // -1
 			 */
 			{
 				name: 'pull',
@@ -224,8 +291,13 @@ const data = [
 			},
 			/**
 			 * Pushes an item to an array, only if it does not already exist in the array.
-			 * @param {*} element
+			 *
+			 * @function Array#pushUnique
+			 * @argument {*} element
 			 * @return {Boolean}
+			 *
+			 * @example [0, 1].pushUnique(2); // true
+			 * @example [0, 1].pushUnique(0); // false
 			 */
 			{
 				name: 'pushUnique',
@@ -239,11 +311,18 @@ const data = [
 		]
 	},
 	{
+		/**
+		 * The built-in Math object
+		 * @global
+		 * @namespace Math
+		 */
 		object: Math,
 		properties: [
 			/**
 			 * Returns the sum of the given arguments
-			 * @param {...number} addends
+			 *
+			 * @function Math#sum
+			 * @argument {...number} addends
 			 * @return {number}
 			 */
 			{
@@ -254,7 +333,7 @@ const data = [
 			},
 			/**
 			 * Returns the product of the given arguments
-			 * @param {...number} factors
+			 * @argument {...number} factors
 			 * @return {number}
 			 */
 			{
@@ -273,7 +352,7 @@ const data = [
 			},
 			/**
 			 * Converts degrees to radians.
-			 * @param {number} degrees
+			 * @argument {number} degrees
 			 * @return {number} radians
 			 */
 			{
@@ -284,7 +363,7 @@ const data = [
 			},
 			/**
 			 * Converts radians to degrees.
-			 * @param {number} radians
+			 * @argument {number} radians
 			 * @return {number} degrees
 			 */
 			{
@@ -295,8 +374,8 @@ const data = [
 			},
 			/**
 			 * Calculates the distance from the first point to the second point.
-			 * @param {Number[]} x the coordinates of the first point.
-			 * @param {Number[]} y the coordinates of the second point.
+			 * @argument {Number[]} x the coordinates of the first point.
+			 * @argument {Number[]} y the coordinates of the second point.
 			 * @return {number} the distance between the two points.
 			 */
 			{
@@ -312,9 +391,9 @@ const data = [
 			/**
 			 * Clamps the value to within the min and max.
 			 * If min > max, then their values are automatically swapped.
-			 * @param {number} value
-			 * @param {number} min
-			 * @param {number} max
+			 * @argument {number} value
+			 * @argument {number} min
+			 * @argument {number} max
 			 * @return {number}
 			 *
 			 * @example
@@ -331,8 +410,8 @@ const data = [
 			/**
 			 * Returns a random integer in the specified range
 			 * If min > max, then their values are automatically swapped.
-			 * @param {number} min=0
-			 * @param {number} max
+			 * @argument {number} min=0
+			 * @argument {number} max
 			 * @return {number}
 			 *
 			 * @example
@@ -360,7 +439,7 @@ if (!Array.prototype.indexOf) {
 		properties: [
 			/**
 			 * Get the index of the passed item.
-			 * @param {*} element the element to find the index for.
+			 * @argument {*} element the element to find the index for.
 			 * @return {number} the index of the passed item or -1 if not found.
 			 *
 			 * @examples
@@ -387,9 +466,9 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
 		properties: [
 			/**
 			 * Add a circle to the current path.
-			 * @param {number} cx the x coordinate of the center.
-			 * @param {number} cy the y coordinate of the center.
-			 * @param {number} radius the radius of the circle.
+			 * @argument {number} cx the x coordinate of the center.
+			 * @argument {number} cy the y coordinate of the center.
+			 * @argument {number} radius the radius of the circle.
 			 */
 			{
 				name: 'circle',
