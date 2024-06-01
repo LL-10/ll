@@ -380,6 +380,27 @@ if (!Array.prototype.indexOf) {
 	});
 }
 
+/** Extend the canvas context CanvasRenderingContext2D with some helper methods */
+if (typeof CanvasRenderingContext2D !== 'undefined') {
+	data.push({
+		object: CanvasRenderingContext2D,
+		properties: [
+			/**
+			 * Add a circle to the current path.
+			 * @param {Number} cx the x coordinate of the center
+			 * @param {Number} cy the y coordinate of the center
+			 * @param {Number} radius the radius of the circle
+			 */
+			{
+				name: 'circle',
+				value: function(cx, cy, radius) {
+					this.arc(cx, cy, radius, 0, 2 * Math.PI, false);
+				}
+			}
+		]
+	});
+}
+
 /** Loop through the data array */
 for (let item of data) {
 	for (let property of item.properties) {
