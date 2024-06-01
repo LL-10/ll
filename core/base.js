@@ -9,7 +9,7 @@ const data = [
 			/**
 			 * Check if an object contains any circular reference
 			 * @param {Object} object
-			 * @return {Boolean}
+			 * @return {boolean}
 			 */
 			{
 				name: 'isCyclic',
@@ -37,8 +37,8 @@ const data = [
 			 * deep (true if all circular reference in both objects point to the same place in theirselves).
 			 * @param {Object} object1
 			 * @param {Object} object2
-			 * @param {Boolean=} detailed=false
-			 * @return {Boolean||Object}
+			 * @param {boolean} [detailed=false]
+			 * @return {boolean|Object}
 			 *
 			 * @examples
 			 * Object.compare({ a: 1, b: 2 }, { b: 2, a: 1 }); // true
@@ -124,8 +124,8 @@ const data = [
 			 * reference (true if all the references of the compared object point to this object) and
 			 * deep (true if all circular reference in both objects point to the same place in theirselves).
 			 * @param {Object} object The object to compare this one to.
-			 * @param {Boolean=} detailed=false
-			 * @return {Boolean||Object}
+			 * @param {boolean} [detailed=false]
+			 * @return {boolean|Object}
 			 *
 			 * @examples
 			 * { a: 1, b: 2 }.compare({ b: 2, a: 1 }); // true
@@ -140,7 +140,7 @@ const data = [
 			},
 			/**
 			 * Check if this object has the specified key.
-			 * @param {String||Symbol} key
+			 * @param {String|Symbol} key
 			 */
 			{
 				name: 'has',
@@ -210,8 +210,8 @@ const data = [
 			},
 			/**
 			 * Removes the first occurency of an element from an array, returning the index
-			 * @param element
-			 * @return {Number}
+			 * @param {*} element
+			 * @return {number}
 			 */
 			{
 				name: 'pull',
@@ -224,7 +224,7 @@ const data = [
 			},
 			/**
 			 * Pushes an item to an array, only if it does not already exist in the array.
-			 * @param element
+			 * @param {*} element
 			 * @return {Boolean}
 			 */
 			{
@@ -243,8 +243,8 @@ const data = [
 		properties: [
 			/**
 			 * Returns the sum of the given arguments
-			 * @param {...Array[Number]} addends
-			 * @return {Number}
+			 * @param {...number} addends
+			 * @return {number}
 			 */
 			{
 				name: 'sum',
@@ -254,8 +254,8 @@ const data = [
 			},
 			/**
 			 * Returns the product of the given arguments
-			 * @param {...Array[Number]} factors
-			 * @return {Number}
+			 * @param {...number} factors
+			 * @return {number}
 			 */
 			{
 				name: 'prod',
@@ -265,7 +265,7 @@ const data = [
 			},
 			/**
 			 * Stores a pre-calculated PI / 180 value.
-			 * @type {Number}
+			 * @type {number}
 			 */
 			{
 				name: 'PI180',
@@ -273,8 +273,8 @@ const data = [
 			},
 			/**
 			 * Converts degrees to radians.
-			 * @param {Number} degrees
-			 * @return {Number} radians
+			 * @param {number} degrees
+			 * @return {number} radians
 			 */
 			{
 				name: 'radians',
@@ -284,8 +284,8 @@ const data = [
 			},
 			/**
 			 * Converts radians to degrees.
-			 * @param {Number} radians
-			 * @return {Number} degrees
+			 * @param {number} radians
+			 * @return {number} degrees
 			 */
 			{
 				name: 'degrees',
@@ -295,9 +295,9 @@ const data = [
 			},
 			/**
 			 * Calculates the distance from the first point to the second point.
-			 * @param {Array[Number]} x the coordinates of the first point.
-			 * @param {Array[Number]} y the coordinates of the second point.
-			 * @return {Number} the distance between the two points.
+			 * @param {Number[]} x the coordinates of the first point.
+			 * @param {Number[]} y the coordinates of the second point.
+			 * @return {number} the distance between the two points.
 			 */
 			{
 				name: 'distance',
@@ -312,10 +312,10 @@ const data = [
 			/**
 			 * Clamps the value to within the min and max.
 			 * If min > max, then their values are automatically swapped.
-			 * @param {Number} value
-			 * @param {Number} min
-			 * @param {Number} max
-			 * @return {Number}
+			 * @param {number} value
+			 * @param {number} min
+			 * @param {number} max
+			 * @return {number}
 			 *
 			 * @example
 			 * Math.clamp(3,4,5); //4
@@ -331,9 +331,9 @@ const data = [
 			/**
 			 * Returns a random integer in the specified range
 			 * If min > max, then their values are automatically swapped.
-			 * @param {Number} min=0
-			 * @param {Number} max
-			 * @return {Number}
+			 * @param {number} min=0
+			 * @param {number} max
+			 * @return {number}
 			 *
 			 * @example
 			 * Math.randomInt(5, 6);
@@ -360,8 +360,8 @@ if (!Array.prototype.indexOf) {
 		properties: [
 			/**
 			 * Get the index of the passed item.
-			 * @param {*} obj The item to find the index for.
-			 * @return {Number} The index of the passed item or -1 if not found.
+			 * @param {*} element the element to find the index for.
+			 * @return {number} the index of the passed item or -1 if not found.
 			 *
 			 * @examples
 			 * ['a','k','x'].indexOf('x'); // 2
@@ -369,9 +369,9 @@ if (!Array.prototype.indexOf) {
 			 */
 			{
 				name: 'indexOf',
-				value: function(object) {
+				value: function(element) {
 					for (let index = 0; index < this.length; index++)
-						if (this[index] === object)
+						if (this[index] === element)
 							return index;
 					return -1;
 				}
@@ -387,9 +387,9 @@ if (typeof CanvasRenderingContext2D !== 'undefined') {
 		properties: [
 			/**
 			 * Add a circle to the current path.
-			 * @param {Number} cx the x coordinate of the center
-			 * @param {Number} cy the y coordinate of the center
-			 * @param {Number} radius the radius of the circle
+			 * @param {number} cx the x coordinate of the center.
+			 * @param {number} cy the y coordinate of the center.
+			 * @param {number} radius the radius of the circle.
 			 */
 			{
 				name: 'circle',
