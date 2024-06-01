@@ -491,6 +491,10 @@ if (!Array.prototype.indexOf) {
 	});
 }
 
+const {
+	CanvasRenderingContext2D
+} = require('canvas');
+
 /** Extend the canvas context CanvasRenderingContext2D with some helper methods */
 if (typeof CanvasRenderingContext2D !== 'undefined') {
 	data.push({
