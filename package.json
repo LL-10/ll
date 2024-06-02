@@ -8,10 +8,10 @@
 		"docs": "chmod +x ./scripts/docs.sh; ./scripts/docs.sh;"
 	},
 	"dependencies": {
-		"canvas": "^2.11.2"
+		"canvas": "*"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.4.0",
-		"typescript-eslint": "^7.11.0"
+		"@eslint/js": "*",
+		"typescript-eslint": "*"
 	}
 }
