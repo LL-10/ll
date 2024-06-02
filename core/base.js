@@ -491,41 +491,44 @@ if (!Array.prototype.indexOf) {
 	});
 }
 
-const {
-	CanvasRenderingContext2D
-} = require('canvas');
-
-/** Extend the canvas context CanvasRenderingContext2D with some helper methods */
-if (typeof CanvasRenderingContext2D !== 'undefined') {
-	data.push({
-		/**
-		 * The CanvasRenderingContext2D interface, part of the Canvas API.
-		 * @global
-		 * @namespace CanvasRenderingContext2D
-		 */
-		object: CanvasRenderingContext2D,
-		properties: [
-			{
-				/**
-				 * Add a circle to the current path.
-				 *
-				 * @function CanvasRenderingContext2D#circle
-				 * @argument {number} cx the x coordinate of the center
-				 * @argument {number} cy the y coordinate of the center
-				 * @argument {number} radius the radius of the circle
-				 *
-				 * @example
-				 * CanvasRenderingContext2D.beginPath();
-				 * CanvasRenderingContext2D.circle();
-				 * CanvasRenderingContext2D.stroke();
-				 */
-				name: 'circle',
-				value: function(cx, cy, radius) {
-					this.arc(cx, cy, radius, 0, 2 * Math.PI, false);
+/** If CanvasRenderingContext2D is not found, try to import it */
+try {
+	if (typeof CanvasRenderingContext2D === 'undefined')
+		({
+			CanvasRenderingContext2D
+		} = require('canvas'));
+} finally {
+	/** Extend the canvas context CanvasRenderingContext2D with some helper methods */
+	if (typeof CanvasRenderingContext2D !== 'undefined')
+		data.push({
+			/**
+			 * The CanvasRenderingContext2D interface, part of the Canvas API.
+			 * @global
+			 * @namespace CanvasRenderingContext2D
+			 */
+			object: CanvasRenderingContext2D,
+			properties: [
+				{
+					/**
+					 * Add a circle to the current path.
+					 *
+					 * @function CanvasRenderingContext2D#circle
+					 * @argument {number} cx the x coordinate of the center
+					 * @argument {number} cy the y coordinate of the center
+					 * @argument {number} radius the radius of the circle
+					 *
+					 * @example
+					 * CanvasRenderingContext2D.beginPath();
+					 * CanvasRenderingContext2D.circle();
+					 * CanvasRenderingContext2D.stroke();
+					 */
+					name: 'circle',
+					value: function(cx, cy, radius) {
+						this.arc(cx, cy, radius, 0, 2 * Math.PI, false);
+					}
 				}
-			}
-		]
-	});
+			]
+		});
 }
 
 /** Loop through the data array */
