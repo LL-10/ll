@@ -11,7 +11,9 @@
 		"canvas": "*"
 	},
 	"devDependencies": {
+		"eslint": "*",
 		"@eslint/js": "*",
+		"global": "*",
 		"typescript-eslint": "*"
 	}
 }
