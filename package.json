@@ -11,9 +11,11 @@
 		"canvas": "*"
 	},
 	"devDependencies": {
-		"eslint": "*",
 		"@eslint/js": "*",
+		"eslint": "*",
 		"global": "*",
+		"jshint": "*",
+		"standard": "*",
 		"typescript-eslint": "*"
 	}
 }
