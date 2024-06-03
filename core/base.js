@@ -72,16 +72,16 @@ const data = [
 						deep: true,
 					};
 					function traverse(object1, object2) {
-						if (object1 instanceof Object === object2 instanceof Object) {
-							if (object1 instanceof Object) {
-								if (compared.has(object1)) {
+						if (object1 instanceof Object === object2 instanceof Object)
+							if (object1 instanceof Object)
+								if (compared.has(object1))
 									if (object1 === object2)
 										comparison.deep = false;
 									else {
 										comparison.reference = false;
 										comparison.value &= object2 === compared.get(object1);
 									}
-								} else {
+								 else {
 									compared.set(object1, object2);
 									for (let key in object1)
 										if (object1.has(key) && object2.has(key))
@@ -89,9 +89,9 @@ const data = [
 										else
 											comparison.value = false;
 								}
-							} else
+							 else
 								comparison.value &= object1 === object2;
-						} else
+						 else
 							comparison.value = false;
 					}
 					traverse(object1, object2);
@@ -464,7 +464,7 @@ const data = [
 ];
 
 /** Add the indexOf method to all array objects if it does not already exist */
-if (!Array.prototype.indexOf) {
+if (!Array.prototype.indexOf)
 	data.push({
 		object: Array.prototype,
 		properties: [
@@ -489,7 +489,6 @@ if (!Array.prototype.indexOf) {
 			},
 		],
 	});
-}
 
 /** If CanvasRenderingContext2D is not found, try to import it */
 try {
@@ -533,7 +532,7 @@ try {
 }
 
 /** Loop through the data array */
-for (let item of data) {
+for (let item of data)
 	for (let property of item.properties) {
 		/** Make property non-enumerable */
 		Object.defineProperty(item.object, property.name, {
@@ -544,7 +543,6 @@ for (let item of data) {
 		/** Assign the property of the object to its value */
 		item.object[property.name] = property.value;
 	}
-}
 
 /** Check console and eventually fix */
 if (typeof console === 'object') {
