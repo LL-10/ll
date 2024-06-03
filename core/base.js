@@ -79,7 +79,7 @@ const data = [
 										comparison.deep = false;
 									else {
 										comparison.reference = false;
-										comparison.value &= (object2 === compared.get(object1));
+										comparison.value &= object2 === compared.get(object1);
 									}
 								} else {
 									compared.set(object1, object2);
@@ -90,7 +90,7 @@ const data = [
 										comparison.value = false;
 								}
 							} else
-								comparison.value &= (object1 === object2);
+								comparison.value &= object1 === object2;
 						} else
 							comparison.value = false;
 					}
