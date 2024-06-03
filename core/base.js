@@ -81,7 +81,7 @@ const data = [
 										comparison.reference = false;
 										comparison.value &= object2 === compared.get(object1);
 									}
-								 else {
+								else {
 									compared.set(object1, object2);
 									for (let key in object1)
 										if (object1.has(key) && object2.has(key))
@@ -89,9 +89,9 @@ const data = [
 										else
 											comparison.value = false;
 								}
-							 else
+							else
 								comparison.value &= object1 === object2;
-						 else
+						else
 							comparison.value = false;
 					}
 					traverse(object1, object2);
