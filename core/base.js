@@ -495,6 +495,7 @@ if (!Array.prototype.indexOf) {
 try {
 	if (typeof CanvasRenderingContext2D === 'undefined')
 		({
+			/* eslint-disable-next-line */
 			CanvasRenderingContext2D,
 		} = require('canvas'));
 } finally {
