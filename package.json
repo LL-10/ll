@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "*",
 		"eslint": "*",
+		"jsdoc": "*",
 		"jshint": "*"
 	}
 }
