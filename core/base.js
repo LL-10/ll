@@ -41,7 +41,7 @@ const data = [
 					}
 					traverse(object, clone);
 					return clone;
-				}
+				},
 			},
 			{
 				/**
@@ -69,7 +69,7 @@ const data = [
 					let comparison = {
 						value: true,
 						reference: true,
-						deep: true
+						deep: true,
 					};
 					function traverse(object1, object2) {
 						if (object1 instanceof Object === object2 instanceof Object) {
@@ -98,7 +98,7 @@ const data = [
 					traverse(object2, object1);
 					comparison.value = !!comparison.value;
 					return detailed ? comparison.value ? comparison : false : comparison.value;
-				}
+				},
 			},
 			{
 				/**
@@ -129,7 +129,7 @@ const data = [
 						return false;
 					}
 					return check(object);
-				}
+				},
 			},
 			{
 				/**
@@ -139,9 +139,9 @@ const data = [
 				name: 'isCyclical',
 				value: function(object) {
 					return Object.isCyclic(object);
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		/**
@@ -162,7 +162,7 @@ const data = [
 				name: 'clone',
 				value: function() {
 					return Object.clone(this);
-				}
+				},
 			},
 			{
 				/**
@@ -186,7 +186,7 @@ const data = [
 				name: 'compare',
 				value: function(object, detailed = false) {
 					return Object.compare(this, object, detailed);
-				}
+				},
 			},
 			{
 				/**
@@ -202,9 +202,9 @@ const data = [
 				name: 'has',
 				value: function(key) {
 					return this.hasOwn ? this.hasOwn(key) : Object.prototype.hasOwnProperty.call(this, key);
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		/**
@@ -246,9 +246,9 @@ const data = [
 					}
 					traverse(array, clone);
 					return clone;
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		/**
@@ -271,7 +271,7 @@ const data = [
 				name: 'clone',
 				value: function() {
 					return Array.clone(this);
-				}
+				},
 			},
 			{
 				/**
@@ -291,7 +291,7 @@ const data = [
 					if (index > -1)
 						this.splice(index, 1);
 					return index;
-				}
+				},
 			},
 			{
 				/**
@@ -310,9 +310,9 @@ const data = [
 						return false;
 					this.push(element);
 					return true;
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		/**
@@ -330,7 +330,7 @@ const data = [
 				 * @type {number}
 				 */
 				name: 'PI180',
-				value: Math.PI / 180
+				value: Math.PI / 180,
 			},
 			{
 				/**
@@ -348,9 +348,9 @@ const data = [
 				 */
 				name: 'clamp',
 				value: function(value, min, max) {
-					[min, max] = [min, max].sort();
+					[ min, max, ] = [ min, max, ].sort();
 					return Math.min(Math.max(value, min), max);
-				}
+				},
 			},
 			{
 				/**
@@ -365,7 +365,7 @@ const data = [
 				name: 'degrees',
 				value: function(radians) {
 					return radians / Math.PI180;
-				}
+				},
 			},
 			{
 				/**
@@ -392,7 +392,7 @@ const data = [
 					if (a.length !== b.length)
 						throw new Error('Both points must have the same number of coordinates');
 					return Math.sqrt(Math.sum(...a.map((element, index) => Math.pow(a[index] - b[index], 2))));
-				}
+				},
 			},
 			{
 				/**
@@ -407,7 +407,7 @@ const data = [
 				name: 'prod',
 				value: function(...factors) {
 					return factors.reduce((a, b) => a * b);
-				}
+				},
 			},
 			{
 				/**
@@ -422,7 +422,7 @@ const data = [
 				name: 'radians',
 				value: function(degrees) {
 					return degrees * Math.PI180;
-				}
+				},
 			},
 			{
 				/**
@@ -438,11 +438,11 @@ const data = [
 				 */
 				name: 'randomInt',
 				value: function(min, max = 0) {
-					[min, max] = [min, max].sort();
+					[ min, max, ] = [ min, max, ].sort();
 					min = Math.ceil(min);
 					max = Math.floor(max);
 					return Math.floor(Math.random() * (max - min + 1)) + min;
-				}
+				},
 			},
 			{
 				/**
@@ -457,10 +457,10 @@ const data = [
 				name: 'sum',
 				value: function(...addends) {
 					return addends.reduce((a, b) => a + b);
-				}
-			}
-		]
-	}
+				},
+			},
+		],
+	},
 ];
 
 /** Add the indexOf method to all array objects if it does not already exist */
@@ -485,9 +485,9 @@ if (!Array.prototype.indexOf) {
 						if (this[index] === element)
 							return index;
 					return -1;
-				}
-			}
-		]
+				},
+			},
+		],
 	});
 }
 
@@ -495,7 +495,7 @@ if (!Array.prototype.indexOf) {
 try {
 	if (typeof CanvasRenderingContext2D === 'undefined')
 		({
-			CanvasRenderingContext2D
+			CanvasRenderingContext2D,
 		} = require('canvas'));
 } finally {
 	/** Extend the canvas context CanvasRenderingContext2D with some helper methods */
@@ -525,9 +525,9 @@ try {
 					name: 'circle',
 					value: function(cx, cy, radius) {
 						this.arc(cx, cy, radius, 0, 2 * Math.PI, false);
-					}
-				}
-			]
+					},
+				},
+			],
 		});
 }
 
@@ -538,7 +538,7 @@ for (let item of data) {
 		Object.defineProperty(item.object, property.name, {
 			enumerable: false,
 			writable: true,
-			configurable: true
+			configurable: true,
 		});
 		/** Assign the property of the object to its value */
 		item.object[property.name] = property.value;
