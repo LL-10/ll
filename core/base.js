@@ -383,7 +383,9 @@ const data = [
 				 * @example Math.distance([1, 2], [4, 6]); // 5
 				 * @example Math.distance([8, 1, 2], [-4, 4, 6]); // 13
 				 * @example Math.distance(1, [4, 6]); // TypeError: Both arguments must be arrays
-				 * @example Math.distance([1, 2, 3, 4], [4, 6]); // Error: Both points must have the same number of coordinates
+				 * @example
+				 * Math.distance([1, 2, 3, 4], [4, 6]);
+				 * // Error: Both points must have the same number of coordinates
 				 */
 				name: 'distance',
 				value: function(a, b) {
