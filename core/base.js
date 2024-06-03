@@ -86,8 +86,8 @@ const data = [
 									for (let key in object1)
 										if (object1.has(key) && object2.has(key))
 											traverse(object1[key], object2[key]);
-									else
-										comparison.value = false;
+										else
+											comparison.value = false;
 								}
 							} else
 								comparison.value &= object1 === object2;
