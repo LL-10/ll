@@ -12,10 +12,8 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "*",
+		"@stylistic/eslint-plugin": "*",
 		"eslint": "*",
-		"global": "*",
-		"jshint": "*",
-		"standard": "*",
-		"typescript-eslint": "*"
+		"jshint": "*"
 	}
 }
