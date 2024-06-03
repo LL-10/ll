@@ -11,7 +11,6 @@
 		"canvas": "*"
 	},
 	"devDependencies": {
-		"@eslint/js": "*",
 		"@stylistic/eslint-plugin": "*",
 		"eslint": "*",
 		"jshint": "*"
