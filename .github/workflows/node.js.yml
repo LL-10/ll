@@ -29,4 +29,3 @@ jobs:
     - run: npm run docs
     - run: npm run lint
     - run: npm run ll
-    - run: git commit -a -m 'linted'
