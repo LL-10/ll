@@ -348,7 +348,7 @@ const data = [
 				 */
 				name: 'clamp',
 				value: function(value, min, max) {
-					[min, max,] = [min, max,].sort();
+					[min, max] = [min, max].sort();
 					return Math.min(Math.max(value, min), max);
 				},
 			},
@@ -438,7 +438,7 @@ const data = [
 				 */
 				name: 'randomInt',
 				value: function(min, max = 0) {
-					[min, max,] = [min, max,].sort();
+					[min, max] = [min, max].sort();
 					min = Math.ceil(min);
 					max = Math.floor(max);
 					return Math.floor(Math.random() * (max - min + 1)) + min;
