@@ -391,7 +391,7 @@ const data = [
 						throw new TypeError('Both arguments must be arrays');
 					if (a.length !== b.length)
 						throw new Error('Both points must have the same number of coordinates');
-					return Math.sqrt(Math.sum(...a.map((element, index) => Math.pow(a[index] - b[index], 2))));
+					return Math.sqrt(Math.sum(...a.map((element, index) => Math.pow(element - b[index], 2))));
 				},
 			},
 			{
