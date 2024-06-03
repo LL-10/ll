@@ -84,13 +84,10 @@ const data = [
 								} else {
 									compared.set(object1, object2);
 									for (let key in object1)
-										if (object1.has(key)) {
-											if (object2.has(key))
-												traverse(object1[key], object2[key]);
-											else
-												comparison.value = false;
-										} else
-											comparison.value = false;
+										if (object1.has(key) && object2.has(key))
+											traverse(object1[key], object2[key]);
+									else
+										comparison.value = false;
 								}
 							} else
 								comparison.value &= (object1 === object2);
@@ -98,6 +95,7 @@ const data = [
 							comparison.value = false;
 					}
 					traverse(object1, object2);
+					traverse(object2, object1);
 					comparison.value = !!comparison.value;
 					return detailed ? comparison.value ? comparison : false : comparison.value;
 				}
