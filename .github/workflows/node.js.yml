@@ -28,3 +28,4 @@ jobs:
         cache: 'npm'
     - run: npm run docs
     - run: npm run lint
+    - run: npm run ll
