@@ -28,5 +28,6 @@ jobs:
         cache: 'npm'
     - run: npm run docs
     - run: npm run lint
+    - run: npm i canvas
     - run: npm run ll
     - run: git status
