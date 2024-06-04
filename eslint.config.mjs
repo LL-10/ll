@@ -54,7 +54,7 @@ const rules = {
 	'@stylistic/nonblock-statement-body-position': ['error', 'below'],
 	'@stylistic/object-curly-spacing': 'error',
 	'@stylistic/one-var-declaration-per-line': ['error', 'initializations'],
-	'@stylistic/padded-blocks': ['error'     , 'never'],
+	'@stylistic/padded-blocks': ['error', 'never'],
 	'@stylistic/quotes': ['error', 'single'],
 	'@stylistic/quote-props': ['error', 'as-needed'],
 	'@stylistic/rest-spread-spacing': 'error',
