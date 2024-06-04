@@ -23,6 +23,11 @@ jobs:
     - run: brew install pango jpeg librsvg
     - run: npm install --build-from-source canvas
     - run: npm ci
+    - run: npm run docs
+    - run: npm run lint
+    - run: npm run ll
+    - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automated commit'
+    - run: git push
   cache:
     needs: install
     runs-on: macos-latest
@@ -38,9 +43,4 @@ jobs:
     needs: install
     runs-on: macos-latest
     steps:
-    - run: npm ci
-    - run: npm run docs
-    - run: npm run lint
-    - run: npm run ll
-    - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automatic commit'
-    - run: git push
+
