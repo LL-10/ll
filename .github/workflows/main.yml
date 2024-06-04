@@ -31,7 +31,7 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        path: ./node_modules
+        path: ~/node_modules
         key: npm
         restore-keys: npm
   build:
@@ -46,5 +46,6 @@ jobs:
     needs: build
     runs-on: macos-latest
     steps:
+    - uses: jobs/build
     - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automatic commit'
     - run: git push
