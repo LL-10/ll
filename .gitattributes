@@ -1,1 +1,4 @@
 * text=auto eol=lf whitespace
+*.png binary
+*.jpg binary
+*.pdf binary
