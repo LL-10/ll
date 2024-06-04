@@ -19,8 +19,8 @@ jobs:
     needs: setup
     runs-on: macos-latest
     steps:
-    - run: npm i node-pre-gyp
-    - run: npm i canvas
+    - run: npm install --build-from-source canvas
+    - run: brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
   test:
     needs: setup
     runs-on: macos-latest
