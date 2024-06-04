@@ -7,19 +7,17 @@ const data = [
 	{
 		/**
 		 * The built-in Object constructor.
-		 * @global
 		 * @namespace Object
+		 * @global
 		 */
 		object: Object,
 		properties: [
 			{
 				/**
 				 * Make a non-referenced deep clone of an object.
-				 *
 				 * @function Object.clone
 				 * @argument {Object} object
 				 * @return {Object}
-				 *
 				 * @example Object.clone({a: {x: 'foo'}, b: 2});
 				 */
 				name: 'clone',
@@ -46,17 +44,15 @@ const data = [
 			{
 				/**
 				 * @summary Compare two objects by their enumerable properties.
+				 * @function Object.compare
 				 * @description In detailed mode, if the comparison returns true, return an object with:
 				 * value (the result of the comparison, always true when returned in the detailed object),
 				 * reference (true if all the references of the second object point to the first) and
 				 * deep (true if all circular reference in both objects point to the same place in theirselves).
-				 *
-				 * @function Object.compare
 				 * @argument {Object} object1
 				 * @argument {Object} object2
 				 * @argument {boolean} [detailed=false]
 				 * @return {boolean|Object}
-				 *
 				 * @example Object.compare({ a: 1, b: 2 }, { b: 2, a: 1 }); // true
 				 * @example Object.compare({ a: 1, b: 2 }, { x: 'hi' }); // false
 				 * @example
@@ -103,11 +99,9 @@ const data = [
 			{
 				/**
 				 * Check if an object contains any circular reference.
-				 *
 				 * @function Object.isCyclic
 				 * @argument {Object} object
 				 * @return {boolean}
-				 *
 				 * @example Object.isCyclic({a: 1, b: 0}); // false
 				 * @example const o = {}; o.a = o; Object.isCyclic(o); // true
 				 * @example
@@ -153,10 +147,8 @@ const data = [
 			{
 				/**
 				 * Return a non-referenced deep clone of this object.
-				 *
 				 * @function Object&period;prototype#clone
 				 * @return {Object}
-				 *
 				 * @example {a: {x: 'foo'}, b: 2}.clone();
 				 */
 				name: 'clone',
@@ -167,16 +159,14 @@ const data = [
 			{
 				/**
 				 * @summary Compare this to an object by its enumerable properties.
+				 * @function Object&period;prototype#compare
 				 * @description In detailed mode, if the comparison returns true, return an object with:
 				 * value (the result of the comparison, always true when returned in the detailed object),
 				 * reference (true if all the references of the compared object point to this object) and
 				 * deep (true if all circular reference in both objects point to the same place in theirselves).
-				 *
-				 * @function Object&period;prototype#compare
 				 * @argument {Object} object the object to compare this object to
 				 * @argument {boolean} [detailed=false]
 				 * @return {boolean|Object}
-				 *
 				 * @example { a: 1, b: 2 }.compare({ b: 2, a: 1 }); // true
 				 * @example { a: 1, b: 2 }.compare({ x: 'hi' }); // false
 				 * @example
@@ -191,11 +181,9 @@ const data = [
 			{
 				/**
 				 * Check if this object has the specified key.
-				 *
 				 * @function Object&period;prototype#has
 				 * @argument {String|Symbol} key
 				 * @return {boolean}
-				 *
 				 * @example {a: 1, b: 2}.has('a'); // true
 				 * @example {a: 1, b: 2}.has('c'); // false
 				 */
@@ -209,22 +197,20 @@ const data = [
 	{
 		/**
 		 * The built-in Array constructor.
-		 * @global
 		 * @namespace Array
+		 * @global
 		 */
 		object: Array,
 		properties: [
 			{
 				/**
 				 * @summary Make a non-referenced deep clone of an array.
+				 * @function Array.clone
 				 * @description If the array contains non-array objects,
 				 * the reference to them will be shared with the clone.
 				 * To avoid this behaviour, use Object.clone() instead.
-				 *
-				 * @function Array.clone
 				 * @argument {Array} array
 				 * @return {Array}
-				 *
 				 * @example Array.clone([[1, 0], 2]);
 				 */
 				name: 'clone',
@@ -260,12 +246,10 @@ const data = [
 			{
 				/**
 				 * @summary Return a non-referenced deep clone of this array.
+				 * @function Array&period;prototype#clone
 				 * @description If the array contains non-array objects, the reference to them will be shared.
 				 * To avoid this behaviour, use Object.clone(this) instead.
-				 *
-				 * @function Array&period;prototype#clone
 				 * @return {Array}
-				 *
 				 * @example [[1, 0], 2].clone();
 				 */
 				name: 'clone',
@@ -277,11 +261,9 @@ const data = [
 				/**
 				 * Removes the first occurency of an element from an array
 				 * and returns its index or -1.
-				 *
 				 * @function Array&period;prototype#pull
 				 * @argument {*} element
 				 * @return {number}
-				 *
 				 * @example [1, 2, 1].pull(1); // 0
 				 * @example [1, 2].pull(0); // -1
 				 */
@@ -296,11 +278,9 @@ const data = [
 			{
 				/**
 				 * Pushes an item to an array, only if it does not already exist in the array.
-				 *
 				 * @function Array&period;prototype#pushUnique
 				 * @argument {*} element
 				 * @return {Boolean}
-				 *
 				 * @example [0, 1].pushUnique(2); // true
 				 * @example [0, 1].pushUnique(0); // false
 				 */
@@ -317,17 +297,16 @@ const data = [
 	{
 		/**
 		 * The built-in Math object.
-		 * @global
 		 * @namespace Math
+		 * @global
 		 */
 		object: Math,
 		properties: [
 			{
 				/**
 				 * Store a pre-calculated PI / 180 value.
-				 *
-				 * @constant Math#PI180
 				 * @type {number}
+				 * @constant Math#PI180
 				 */
 				name: 'PI180',
 				value: Math.PI / 180,
@@ -335,14 +314,12 @@ const data = [
 			{
 				/**
 				 * @summary Clamp the value to within the min and max.
-				 * @description If min > max, then their values are automatically swapped.
-				 *
 				 * @function Math#clamp
+				 * @description If min > max, then their values are automatically swapped.
 				 * @argument {number} value
 				 * @argument {number} min
 				 * @argument {number} max
 				 * @return {number}
-				 *
 				 * @example Math.clamp(3, 4, 5); // 4
 				 * @example Math.clamp(5, 0, 10); // 5
 				 */
@@ -355,11 +332,9 @@ const data = [
 			{
 				/**
 				 * Convert radians to degrees.
-				 *
 				 * @function Math#degrees
 				 * @argument {number} radians
 				 * @return {number}
-				 *
 				 * @example Math.degrees(1); // 57.29577951308232
 				 */
 				name: 'degrees',
@@ -370,14 +345,12 @@ const data = [
 			{
 				/**
 				 * Calculate the distance from the first point to the second point.
-				 *
 				 * @function Math#distance
 				 * @argument {Number[]} x the coordinates of the first point
 				 * @argument {Number[]} y the coordinates of the second point
+				 * @return {number}
 				 * @exception {TypeError} Both arguments must be arrays.
 				 * @exception {Error} Both points must have the same number of coordinates.
-				 * @return {number}
-				 *
 				 * @example Math.distance([1, 2], [4, 6]); // 5
 				 * @example Math.distance([8, 1, 2], [-4, 4, 6]); // 13
 				 * @example Math.distance(1, [4, 6]); // TypeError: Both arguments must be arrays
@@ -397,11 +370,9 @@ const data = [
 			{
 				/**
 				 * Return the product of the given arguments.
-				 *
 				 * @function Math#prod
 				 * @argument {...number} factors
 				 * @return {number}
-				 *
 				 * @example Math.prod(1, 2, 3, 4); // 24
 				 */
 				name: 'prod',
@@ -412,11 +383,9 @@ const data = [
 			{
 				/**
 				 * Convert degrees to radians.
-				 *
 				 * @function Math#radians
 				 * @argument {number} degrees
 				 * @return {number}
-				 *
 				 * @example Math.radians(90); // 1.5707963267948966
 				 */
 				name: 'radians',
@@ -427,13 +396,11 @@ const data = [
 			{
 				/**
 				 * @summary Return a random integer in the specified range.
-				 * @description If min > max, then their values are automatically swapped.
-				 *
 				 * @function Math#randomInt
+				 * @description If min > max, then their values are automatically swapped.
 				 * @argument {number} [min=0]
 				 * @argument {number} max
 				 * @return {number}
-				 *
 				 * @example Math.randomInt(4, 6);
 				 */
 				name: 'randomInt',
@@ -447,11 +414,9 @@ const data = [
 			{
 				/**
 				 * Return the sum of the given arguments.
-				 *
 				 * @function Math#sum
 				 * @argument {...number} addends
 				 * @return {number}
-				 *
 				 * @example Math.sum(1, 2, 3, 4); // 10
 				 */
 				name: 'sum',
@@ -471,11 +436,9 @@ if (!Array.prototype.indexOf)
 			{
 				/**
 				 * Get the index of the first occurency of an element in this array.
-				 *
 				 * @function Array&period;prototype#indexOf
 				 * @argument {*} element the element to find the index of
 				 * @return {number} The index of the passed element, or -1 if not found.
-				 *
 				 * @example ['a', 'k', 'x'].indexOf('x'); // 2
 				 * @example ['a', 'k', 'x'].indexOf('b'); // -1
 				 */
@@ -503,20 +466,18 @@ try {
 		data.push({
 			/**
 			 * The CanvasRenderingContext2D interface, part of the Canvas API.
-			 * @global
 			 * @namespace CanvasRenderingContext2D
+			 * @global
 			 */
 			object: CanvasRenderingContext2D,
 			properties: [
 				{
 					/**
 					 * Add a circle to the current path.
-					 *
 					 * @function CanvasRenderingContext2D#circle
 					 * @argument {number} cx the x coordinate of the center
 					 * @argument {number} cy the y coordinate of the center
 					 * @argument {number} radius the radius of the circle
-					 *
 					 * @example
 					 * CanvasRenderingContext2D.beginPath();
 					 * CanvasRenderingContext2D.circle();
