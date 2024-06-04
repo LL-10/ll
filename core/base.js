@@ -141,7 +141,7 @@ const data = [
 			{
 				/**
 				 * @function Object.isCyclical
-				 * @deprecated use {@link Object.isCyclic} instead.
+				 * @deprecated Use {@link Object.isCyclic} instead.
 				 */
 				name: 'isCyclical',
 				value: function(object) {
@@ -444,7 +444,7 @@ const data = [
 	},
 ];
 
-/** Add the indexOf method to all array objects if it does not already exist */
+/** Add the indexOf method to all array objects if it does not already exist. */
 if (!Array.prototype.indexOf)
 	data.push({
 		object: Array.prototype,
