@@ -14,7 +14,7 @@ jobs:
     - name: Use Node.js 20.x
       uses: actions/setup-node@v4
       with:
-        node-version: 'v14.x.x'
+        node-version: latest
         cache: 'npm'
   test:
     runs-on: macos-latest
