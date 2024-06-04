@@ -22,7 +22,7 @@ jobs:
     - run: brew install pango jpeg librsvg
     - run: npm install --build-from-source canvas
     - run: npm ci
-  test:
+  build:
     needs: install
     runs-on: macos-latest
     steps:
@@ -30,3 +30,10 @@ jobs:
     - run: npm run docs
     - run: npm run lint
     - run: npm run ll
+  commit:
+    needs: build
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automatic commit'
+
