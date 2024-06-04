@@ -1,7 +1,7 @@
 require('./core/base.js');
 
 const fs = require('fs');
-const childProcess = require('child_process');
+//const childProcess = require('child_process');
 
 const canvas = require('canvas');
 const context = canvas.createCanvas(200, 200, 'pdf');
