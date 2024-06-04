@@ -1,15 +1,12 @@
-name: Test
-
+name: Main
 on:
   push:
     branches: [ 'main' ]
   pull_request:
     branches: [ 'main' ]
-
 permissions:
   contents: write
   pull-requests: write
-
 jobs:
   setup:
     runs-on: macos-latest
@@ -35,10 +32,9 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        path: ~/.node_modules
-        key: "${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}"
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
+        path: ~/node_modules
+        key: 'npm'
+        restore-keys: 'npm'
   build:
     needs: install
     runs-on: macos-latest
