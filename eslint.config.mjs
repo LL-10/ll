@@ -22,6 +22,7 @@ const rules = {
 	'@stylistic/comma-style': 'error',
 	'@stylistic/computed-property-spacing': 'error',
 	'@stylistic/dot-location': ['error', 'property'],
+	'@stylistic/eol-last': 'error',
 	'@stylistic/function-call-spacing': 'error',
 	'@stylistic/function-paren-newline': 'error',
 	'@stylistic/generator-star-spacing': ['error', 'both'],
@@ -33,6 +34,7 @@ const rules = {
 	'@stylistic/indent-binary-ops': ['error', 'tab'],
 	'@stylistic/key-spacing': 'error',
 	'@stylistic/keyword-spacing': 'error',
+	'@stylistic/linebreak-style': 'error',
 	'@stylistic/max-len': [
 		'error', {
 			code: 100,
