@@ -16,12 +16,14 @@ const rules = {
 	'@stylistic/arrow-parens': ['error', 'as-needed'],
 	'@stylistic/arrow-spacing': 'error',
 	'@stylistic/block-spacing': 'error',
+	'@stylistic/brace-style': 'error',
 	'@stylistic/comma-dangle': ['error', 'always-multiline'],
 	'@stylistic/comma-spacing': 'error',
 	'@stylistic/comma-style': 'error',
 	'@stylistic/computed-property-spacing': 'error',
 	'@stylistic/dot-location': ['error', 'property'],
 	'@stylistic/function-call-spacing': 'error',
+	'@stylistic/function-paren-newline': 'error',
 	'@stylistic/generator-star-spacing': ['error', 'both'],
 	'@stylistic/indent': [
 		'error', 'tab', {
@@ -44,6 +46,7 @@ const rules = {
 	],
 	'@stylistic/multiline-comment-style': 'error',
 	'@stylistic/multiline-ternary': ['error', 'always-multiline'],
+	'@stylistic/new-parens': 'error',
 	'@stylistic/no-confusing-arrow': 'error',
 	'@stylistic/no-extra-parens': [
 		'error', 'all', {
@@ -68,6 +71,7 @@ const rules = {
 	'@stylistic/no-trailing-spaces': 'error',
 	'@stylistic/no-whitespace-before-property': 'error',
 	'@stylistic/nonblock-statement-body-position': ['error', 'below'],
+	'@stylistic/object-curly-newline': ['error', 'always'],
 	'@stylistic/object-curly-spacing': 'error',
 	'@stylistic/one-var-declaration-per-line': ['error', 'initializations'],
 	'@stylistic/operator-linebreak': ['error', 'after'],
