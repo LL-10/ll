@@ -1,5 +1,5 @@
 /**
- * @file Eslint configuration file
+ * @file Eslint configuration file.
  */
 
 import jsdoc from 'eslint-plugin-jsdoc';
@@ -19,6 +19,9 @@ const plugins = {
 const rules = {
 	'@jsdoc/require-description': 'error',
 
+	//'@jsdoc/': 'error',
+
+	'@jsdoc/require-description-complete-sentence': 'error',
 	'@jsdoc/require-example': 'error',
 	'@jsdoc/require-file-overview': 'error',
 	'@jsdoc/require-hyphen-before-param-description': 'error',
