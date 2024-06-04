@@ -18,6 +18,7 @@ const rules = {
 	'@stylistic/comma-spacing': 'error',
 	'@stylistic/comma-style': 'error',
 	'@stylistic/computed-property-spacing': 'error',
+	'@stylistic/dot-location': ['error','property'],
 	'@stylistic/function-call-spacing': 'error',
 	'@stylistic/generator-star-spacing': ['error', 'both'],
 	'@stylistic/indent': ['error', 'tab', {
