@@ -61,6 +61,7 @@ const rules = {
 	'@stylistic/multiline-comment-style': 'error',
 	'@stylistic/multiline-ternary': ['error', 'always-multiline'],
 	'@stylistic/new-parens': 'error',
+	'@stylistic/newline-per-chained-call': 'error',
 	'@stylistic/no-confusing-arrow': 'error',
 	'@stylistic/no-extra-parens': [
 		'error',
@@ -91,6 +92,7 @@ const rules = {
 	'@stylistic/nonblock-statement-body-position': ['error', 'below'],
 	'@stylistic/object-curly-newline': ['error', 'always'],
 	'@stylistic/object-curly-spacing': 'error',
+	'@stylistic/object-property-newline': 'error',
 	'@stylistic/one-var-declaration-per-line': ['error', 'initializations'],
 	'@stylistic/operator-linebreak': ['error', 'after'],
 	'@stylistic/padded-blocks': ['error', 'never'],
