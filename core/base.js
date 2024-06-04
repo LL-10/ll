@@ -24,6 +24,9 @@ const data = [
 				value: function(object) {
 					const clone = [];
 					const cloned = new Map();
+					/**
+					 * @ignore
+					 */
 					function traverse(object, clone) {
 						cloned.set(object, clone);
 						for (let key in object)
@@ -67,6 +70,9 @@ const data = [
 						reference: true,
 						deep: true,
 					};
+					/**
+					 * @ignore
+					 */
 					function traverse(object1, object2) {
 						if (object1 instanceof Object === object2 instanceof Object)
 							if (object1 instanceof Object)
@@ -111,6 +117,9 @@ const data = [
 				name: 'isCyclic',
 				value: function(object) {
 					const checked = [];
+					/**
+					 * @ignore
+					 */
 					function check(object) {
 						if (object instanceof Object) {
 							if (checked.indexOf(object) !== -1)
@@ -217,6 +226,9 @@ const data = [
 				value: function(array) {
 					const clone = [];
 					const cloned = new Map();
+					/**
+					 * @ignore
+					 */
 					function traverse(array, clone) {
 						cloned.set(array, clone);
 						for (let key in array)
