@@ -26,7 +26,8 @@ jobs:
     - run: brew install pango jpeg librsvg
     - run: npm install --build-from-source canvas
     - run: npm ci
-  example-job:
+  cache:
+    needs: install
     runs-on: macos-latest
     steps:
     - name: Cache node modules
