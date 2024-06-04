@@ -8,7 +8,7 @@
 		"docs": "chmod +x ./scripts/docs.sh; ./scripts/docs.sh;"
 	},
 	"dependencies": {
-		"canvas": "*"
+		"canvas": "^2.11.2"
 	},
 	"devDependencies": {
 		"@stylistic/eslint-plugin": "*",
