@@ -17,10 +17,30 @@ const plugins = {
 	'@stylistic': stylistic,
 };
 const rules = {
-	'@jsdoc/require-description': 'error',
-
 	//'@jsdoc/': 'error',
-
+	'@jsdoc/check-alignment': 'error',
+	'@jsdoc/check-examples': 'off', //TODO wait for Eslint updates
+	'@jsdoc/check-indentation': 'error',
+	'@jsdoc/check-line-alignment': 'error',
+	'@jsdoc/check-param-names': 'error',
+	'@jsdoc/check-property-names': 'error',
+	'@jsdoc/check-syntax': 'error',
+	'@jsdoc/check-tag-names': 'error',
+	'@jsdoc/check-types': 'error',
+	'@jsdoc/check-values': 'error',
+	'@jsdoc/empty-tags': 'error',
+	'@jsdoc/implements-on-classes': 'error',
+	'@jsdoc/informative-docs': 'error',
+	'@jsdoc/multiline-blocks': 'error',
+	'@jsdoc/no-bad-blocks': 'error',
+	'@jsdoc/no-blank-block-descriptions': 'error',
+	'@jsdoc/no-blank-blocks': 'error',
+	'@jsdoc/no-defaults': 'error',
+	'@jsdoc/no-multi-asterisks': 'error',
+	'@jsdoc/no-types': 'error',
+	'@jsdoc/no-undefined-types': 'error',
+	'@jsdoc/require-asterisk-prefix': 'error',
+	'@jsdoc/require-description': 'error',
 	'@jsdoc/require-description-complete-sentence': 'error',
 	'@jsdoc/require-example': 'error',
 	'@jsdoc/require-file-overview': 'error',
@@ -50,7 +70,7 @@ const rules = {
 			escapeHTML: true,
 		},
 	],
-	'@jsdoc/valid-types': 'off',
+	'@jsdoc/valid-types': 'off', // TODO some namespaces give error
 	'@stylistic/array-bracket-newline': 'error',
 	'@stylistic/array-bracket-spacing': 'error',
 	'@stylistic/array-element-newline': [
@@ -233,6 +253,15 @@ const rules = {
 	'use-isnan': 'error',
 	'valid-typeof': 'error',
 };
+const settings = {
+	jsdoc: {
+		tagNamePreference: {
+			param: 'argument',
+			returns: 'return',
+			throws: 'exception',
+		},
+	},
+};
 
 export default [
 	{
@@ -247,6 +276,7 @@ export default [
 		linterOptions: linterOptions,
 		plugins: plugins,
 		rules: rules,
+		settings: settings,
 	},
 	{
 		files: ['**/*.mjs'],
@@ -257,5 +287,6 @@ export default [
 		linterOptions: linterOptions,
 		plugins: plugins,
 		rules: rules,
+		settings: settings,
 	},
 ];
