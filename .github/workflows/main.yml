@@ -39,8 +39,3 @@ jobs:
         path: ~/node_modules
         key: npm
         restore-keys: npm
-  build:
-    needs: install
-    runs-on: macos-latest
-    steps:
-
