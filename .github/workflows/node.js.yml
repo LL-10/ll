@@ -39,6 +39,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
+    - run: git config --global user.name 'LL-10'
+    - run: git config --global user.email 'LL-10@users.noreply.github.com'
     - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automatic commit'
     - run: git push
 
