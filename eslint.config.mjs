@@ -13,6 +13,12 @@ const plugins = {
 const rules = {
 	'@stylistic/array-bracket-newline': 'error',
 	'@stylistic/array-bracket-spacing': 'error',
+	'@stylistic/array-element-newline': [
+		'error',
+		{
+			multiline: true,
+		},
+	],
 	'@stylistic/arrow-parens': ['error', 'as-needed'],
 	'@stylistic/arrow-spacing': 'error',
 	'@stylistic/block-spacing': 'error',
@@ -26,8 +32,11 @@ const rules = {
 	'@stylistic/function-call-spacing': 'error',
 	'@stylistic/function-paren-newline': 'error',
 	'@stylistic/generator-star-spacing': ['error', 'both'],
+	'@stylistic/implicit-arrow-linebreak': 'error',
 	'@stylistic/indent': [
-		'error', 'tab', {
+		'error',
+		'tab',
+		{
 			SwitchCase: 1,
 		},
 	],
@@ -35,14 +44,17 @@ const rules = {
 	'@stylistic/key-spacing': 'error',
 	'@stylistic/keyword-spacing': 'error',
 	'@stylistic/linebreak-style': 'error',
+	'@stylistic/lines-between-class-members': ['error', 'never'],
 	'@stylistic/max-len': [
-		'error', {
+		'error',
+		{
 			code: 100,
 			tabWidth: 1,
 		},
 	],
 	'@stylistic/max-statements-per-line': [
-		'error', {
+		'error',
+		{
 			max: 1,
 		},
 	],
@@ -51,7 +63,9 @@ const rules = {
 	'@stylistic/new-parens': 'error',
 	'@stylistic/no-confusing-arrow': 'error',
 	'@stylistic/no-extra-parens': [
-		'error', 'all', {
+		'error',
+		'all',
+		{
 			nestedBinaryExpressions: true,
 		},
 	],
@@ -61,12 +75,14 @@ const rules = {
 	'@stylistic/no-mixed-spaces-and-tabs': 'error',
 	'@stylistic/no-multi-spaces': 'error',
 	'@stylistic/no-multiple-empty-lines': [
-		'error', {
+		'error',
+		{
 			max: 1,
 		},
 	],
 	'@stylistic/no-tabs': [
-		'error', {
+		'error',
+		{
 			allowIndentationTabs: true,
 		},
 	],
@@ -86,7 +102,8 @@ const rules = {
 	'@stylistic/semi-style': 'error',
 	'@stylistic/space-before-blocks': 'error',
 	'@stylistic/space-before-function-paren': [
-		'error', {
+		'error',
+		{
 			anonymous: 'never',
 			named: 'never',
 			asyncArrow: 'always',
@@ -177,10 +194,7 @@ const rules = {
 
 export default [
 	{
-		ignores: [
-			'docs/',
-			'node_modules/',
-		],
+		ignores: ['docs/', 'node_modules/'],
 	},
 	{
 		files: ['**/*.js'],
