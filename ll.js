@@ -1,3 +1,7 @@
+/**
+ * @file Starting point
+ */
+
 require('./core/base.js');
 
 const fs = require('fs');
