@@ -1,10 +1,10 @@
 /**
- * @file Base extensions definition
+ * @file Base extensions definition.
  */
 
 /**
  * An array with stored all the data of the properties
- * to be defined for the different objects
+ * to be defined for the different objects.
  * @ignore
  */
 const data = [
@@ -177,7 +177,7 @@ const data = [
 				 * value (the result of the comparison, always true when returned in the detailed object),
 				 * reference (true if all the references of the compared object point to this object) and
 				 * deep (true if all circular reference in both objects point to the same place in theirselves).
-				 * @argument {Object} object the object to compare this object to
+				 * @argument {Object} object The object to compare this object to.
 				 * @argument {boolean} [detailed=false]
 				 * @return {boolean|Object}
 				 * @example { a: 1, b: 2 }.compare({ b: 2, a: 1 }); // true
@@ -362,8 +362,8 @@ const data = [
 				/**
 				 * Calculate the distance from the first point to the second point.
 				 * @function Math#distance
-				 * @argument {Number[]} x the coordinates of the first point
-				 * @argument {Number[]} y the coordinates of the second point
+				 * @argument {Number[]} x The coordinates of the first point.
+				 * @argument {Number[]} y The coordinates of the second point.
 				 * @return {number}
 				 * @exception {TypeError} Both arguments must be arrays.
 				 * @exception {Error} Both points must have the same number of coordinates.
@@ -453,7 +453,7 @@ if (!Array.prototype.indexOf)
 				/**
 				 * Get the index of the first occurency of an element in this array.
 				 * @function Array&period;prototype#indexOf
-				 * @argument {*} element the element to find the index of
+				 * @argument {*} element The element to find the index of.
 				 * @return {number} The index of the passed element, or -1 if not found.
 				 * @example ['a', 'k', 'x'].indexOf('x'); // 2
 				 * @example ['a', 'k', 'x'].indexOf('b'); // -1
@@ -469,7 +469,7 @@ if (!Array.prototype.indexOf)
 		],
 	});
 
-/** If CanvasRenderingContext2D is not found, try to import it */
+/** If CanvasRenderingContext2D is not found, try to import it. */
 try {
 	if (typeof CanvasRenderingContext2D === 'undefined')
 		({
@@ -477,7 +477,7 @@ try {
 			CanvasRenderingContext2D,
 		} = require('canvas'));
 } finally {
-	/** Extend the canvas context CanvasRenderingContext2D with some helper methods */
+	/** Extend the canvas context CanvasRenderingContext2D with some helper methods. */
 	if (typeof CanvasRenderingContext2D !== 'undefined')
 		data.push({
 			/**
@@ -491,9 +491,9 @@ try {
 					/**
 					 * Add a circle to the current path.
 					 * @function CanvasRenderingContext2D#circle
-					 * @argument {number} cx the x coordinate of the center
-					 * @argument {number} cy the y coordinate of the center
-					 * @argument {number} radius the radius of the circle
+					 * @argument {number} cx The x coordinate of the center.
+					 * @argument {number} cy The y coordinate of the center.
+					 * @argument {number} radius The radius of the circle.
 					 * @example
 					 * CanvasRenderingContext2D.beginPath();
 					 * CanvasRenderingContext2D.circle();
@@ -508,20 +508,20 @@ try {
 		});
 }
 
-/** Loop through the data array */
+/** Loop through the data array. */
 for (let item of data)
 	for (let property of item.properties) {
-		/** Make property non-enumerable */
+		/** Make property non-enumerable. */
 		Object.defineProperty(item.object, property.name, {
 			enumerable: false,
 			writable: true,
 			configurable: true,
 		});
-		/** Assign the property of the object to its value */
+		/** Assign the property of the object to its value. */
 		item.object[property.name] = property.value;
 	}
 
-/** Check console and eventually fix */
+/** Check console and eventually fix. */
 if (typeof console === 'object') {
 	if (typeof console.log === 'function') {
 		if (!console.info)
@@ -532,8 +532,8 @@ if (typeof console === 'object') {
 			console.error = console.log;
 	}
 } else
-	/** Create dummy console */
-	/* eslint-disable-next-line */
+	/** Create dummy console. */
+	// eslint-disable-next-line
 	console = {
 		log() {},
 		info() {},
