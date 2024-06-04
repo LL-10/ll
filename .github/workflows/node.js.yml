@@ -21,6 +21,7 @@ jobs:
     steps:
     - run: brew install pango jpeg librsvg
     - run: npm install --build-from-source canvas
+    - run: npm ci
   test:
     needs: setup
     runs-on: macos-latest
