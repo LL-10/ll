@@ -1,3 +1,4 @@
+import jsdoc from 'eslint-plugin-jsdoc';
 import stylistic from '@stylistic/eslint-plugin';
 
 const globals = {
@@ -8,9 +9,29 @@ const linterOptions = {
 	reportUnusedDisableDirectives: 'error',
 };
 const plugins = {
+	'@jsdoc': jsdoc,
 	'@stylistic': stylistic,
 };
 const rules = {
+	'@jsdoc/require-description': 'error',
+
+	'@jsdoc/require-returns': 'error',
+	'@jsdoc/require-returns-check': 'error',
+	'@jsdoc/require-returns-description': 'error',
+	'@jsdoc/require-returns-type': 'error',
+	'@jsdoc/require-throws': 'error',
+	'@jsdoc/require-yields': 'error',
+	'@jsdoc/require-yields-check': 'error',
+	'@jsdoc/sort-tags': 'error',
+	'@jsdoc/tag-lines': 'error',
+	'@jsdoc/text-escaping': [
+		'error',
+		{
+			escapeMarkdown: true,
+			escapeHTML: true,
+		},
+	],
+	'@jsdoc/valid-types': 'off',
 	'@stylistic/array-bracket-newline': 'error',
 	'@stylistic/array-bracket-spacing': 'error',
 	'@stylistic/array-element-newline': [
