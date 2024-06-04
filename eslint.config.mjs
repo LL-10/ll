@@ -11,8 +11,9 @@ const plugins = {
 	'@stylistic': stylistic,
 };
 const rules = {
-	'@stylistic/array-bracket-spacing': 'error',
 	'@stylistic/array-bracket-newline': 'error',
+	'@stylistic/array-bracket-spacing': 'error',
+	'@stylistic/arrow-parens': ['error', 'as-needed'],
 	'@stylistic/arrow-spacing': 'error',
 	'@stylistic/block-spacing': 'error',
 	'@stylistic/comma-dangle': ['error', 'always-multiline'],
