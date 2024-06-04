@@ -19,7 +19,7 @@ jobs:
     needs: setup
     runs-on: macos-latest
     steps:
-    - run: brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
+    - run: brew install pango jpeg librsvg
     - run: npm install --build-from-source canvas
   test:
     needs: setup
