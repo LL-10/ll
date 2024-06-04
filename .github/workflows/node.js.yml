@@ -19,11 +19,13 @@ jobs:
     needs: setup
     runs-on: macos-latest
     steps:
+    - run: npm i node-pre-gyp
     - run: npm i jsdoc
   test:
     needs: setup
     runs-on: macos-latest
     steps:
+    - uses: actions/checkout@v4
     - run: npm run docs
     - run: npm run lint
     - run: npm run ll
