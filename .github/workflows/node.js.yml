@@ -19,7 +19,7 @@ jobs:
     needs: setup
     runs-on: macos-latest
     steps:
-    - run: npm i canvas
+    - run: npm i jsdoc
   test:
     needs: setup
     runs-on: macos-latest
