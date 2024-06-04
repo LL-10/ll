@@ -1,5 +1,5 @@
 /**
- * @file Starting point
+ * @file Starting point.
  */
 
 require('./core/base.js');
