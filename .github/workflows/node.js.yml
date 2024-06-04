@@ -40,4 +40,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automatic commit'
+    - run: git push
 
