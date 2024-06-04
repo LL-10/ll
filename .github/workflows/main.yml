@@ -8,7 +8,7 @@ permissions:
   contents: write
   pull-requests: write
 jobs:
-  setup:
+  main:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
@@ -16,22 +16,9 @@ jobs:
       with:
         node-version: latest
         cache: npm
-  install:
-    needs: setup
-    runs-on: macos-latest
-    steps:
     - run: brew install pango jpeg librsvg
     - run: npm install --build-from-source canvas
     - run: npm ci
-    - run: npm run docs
-    - run: npm run lint
-    - run: npm run ll
-    - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automated commit'
-    - run: git push
-  cache:
-    needs: install
-    runs-on: macos-latest
-    steps:
     - uses: actions/cache@v4
       env:
         cache-name: cache-node-modules
@@ -39,3 +26,8 @@ jobs:
         path: ~/node_modules
         key: npm
         restore-keys: npm
+    - run: npm run docs
+    - run: npm run lint
+    - run: npm run ll
+    - run: git diff --quiet && git diff --staged --quiet || git commit -am 'Automated commit'
+    - run: git push
