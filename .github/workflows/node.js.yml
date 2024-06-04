@@ -19,7 +19,7 @@ jobs:
     needs: setup
     runs-on: macos-latest
     steps:
-    - run: npx canvas
+    - run: npm i canvas
   test:
     needs: setup
     runs-on: macos-latest
