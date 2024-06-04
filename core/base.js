@@ -1,4 +1,8 @@
 /**
+ * @file Base extensions definition
+ */
+
+/**
  * An array with stored all the data of the properties
  * to be defined for the different objects
  * @ignore
