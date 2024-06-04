@@ -10,7 +10,7 @@
 	},
 	"sourceType": "module",
 	"tags": {
-		"allowUnknownTags": true,
+		"allowUnknownTags": false,
 		"dictionaries": [
 			"jsdoc",
 			"closure"
