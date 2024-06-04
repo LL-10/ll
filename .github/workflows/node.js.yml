@@ -15,13 +15,15 @@ jobs:
       with:
         node-version: latest
         cache: 'npm'
+  install:
+    needs: setup
+    runs-on: macos-latest
+    steps:
+    - run: npx canvas
   test:
     needs: setup
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
-    - run: npm --version
-    - run: npm ci
     - run: npm run docs
     - run: npm run lint
     - run: npm run ll
