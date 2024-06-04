@@ -23,7 +23,7 @@ jobs:
     - run: npm install --build-from-source canvas
     - run: npm ci
   test:
-    needs: setup
+    needs: install
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
