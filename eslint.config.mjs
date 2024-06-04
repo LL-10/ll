@@ -5,9 +5,11 @@
 import jsdoc from 'eslint-plugin-jsdoc';
 import stylistic from '@stylistic/eslint-plugin';
 
-const globals = {
-	CanvasRenderingContext2D: 'readonly',
-	console: 'readonly',
+const languageOptions = {
+	globals: {
+		CanvasRenderingContext2D: 'readonly',
+		console: 'readonly',
+	},
 };
 const linterOptions = {
 	reportUnusedDisableDirectives: 'error',
@@ -17,7 +19,7 @@ const plugins = {
 	'@stylistic': stylistic,
 };
 const rules = {
-	//'@jsdoc/': 'error',
+	'@jsdoc/check-access': 'error',
 	'@jsdoc/check-alignment': 'error',
 	'@jsdoc/check-examples': 'off', //TODO wait for Eslint updates
 	'@jsdoc/check-indentation': 'error',
@@ -270,7 +272,7 @@ export default [
 	{
 		files: ['**/*.js'],
 		languageOptions: {
-			globals: globals,
+			...languageOptions,
 			sourceType: 'commonjs',
 		},
 		linterOptions: linterOptions,
@@ -281,7 +283,7 @@ export default [
 	{
 		files: ['**/*.mjs'],
 		languageOptions: {
-			globals: globals,
+			...languageOptions,
 			sourceType: 'module',
 		},
 		linterOptions: linterOptions,
