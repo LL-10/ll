@@ -21,7 +21,7 @@ ctx.lineTo(100, 100);
 ctx.lineTo(200, 200);
 ctx.stroke();
 
-fs.mkdir('.out/', {
+fs.mkdir('./out/', {
 	recursive: true,
 }, function(error) {
 	if (error)
