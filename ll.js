@@ -8,13 +8,29 @@ const fs = require('fs');
 //const childProcess = require('child_process');
 
 const canvas = require('canvas');
-const context = canvas.createCanvas(200, 200, 'pdf');
+const Canvas = canvas.createCanvas;
+
+const context = new Canvas(200, 200, 'pdf');
+console.log(context.getContext.toString());
 const ctx = context.getContext('2d');
+const ctx2 = new CanvasRenderingContext2D(context);
+console.log(ctx.constructor);
+console.log(ctx2.constructor);
+
+console.log(ctx.width);
 
 ctx.fillStyle = 'green';
 ctx.fillRect(10, 10, 150, 100);
+ctx.beginPath();
+ctx.lineTo(100, 100);
+ctx.lineTo(200, 200);
+ctx.stroke();
 
-fs.createWriteStream('./out/a.pdf').write(context.toBuffer());
+try {
+	fs.createWriteStream('./out/a.pdf').write(context.toBuffer());
+} catch (e) {
+	console.log(e);
+}
 
 // Write "Awesome!"
 /*
