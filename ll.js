@@ -11,13 +11,8 @@ const canvas = require('canvas');
 const Canvas = canvas.createCanvas;
 
 const context = new Canvas(200, 200, 'pdf');
-console.log(context.getContext.toString());
 const ctx = context.getContext('2d');
-const ctx2 = new CanvasRenderingContext2D(context);
-console.log(ctx.constructor);
-console.log(ctx2.constructor);
-
-console.log(ctx.width);
+//const ctx2 = new CanvasRenderingContext2D(context);
 
 ctx.fillStyle = 'green';
 ctx.fillRect(10, 10, 150, 100);
@@ -26,11 +21,13 @@ ctx.lineTo(100, 100);
 ctx.lineTo(200, 200);
 ctx.stroke();
 
-try {
-	fs.createWriteStream('./out/a.pdf').write(context.toBuffer());
-} catch (e) {
-	console.log(e);
-}
+fs.mkdir('.out/', {
+	recursive: true,
+}, function(error) {
+	if (error)
+		console.log(error);
+});
+fs.createWriteStream('./out/a.pdf').write(context.toBuffer());
 
 // Write "Awesome!"
 /*
