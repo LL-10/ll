@@ -23,7 +23,7 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        path: ~/node_modules
+        path: ~/.npm
         key: npm
         restore-keys: npm
     - run: npm run docs
