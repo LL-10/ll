@@ -21,7 +21,6 @@ ctx.lineTo(100, 100);
 ctx.lineTo(200, 200);
 ctx.stroke();
 
-
 const path = './out/';
 if (!fs.existsSync(path))
 	fs.mkdirSync(path, true);
