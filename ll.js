@@ -21,13 +21,11 @@ ctx.lineTo(100, 100);
 ctx.lineTo(200, 200);
 ctx.stroke();
 
-fs.mkdir('./out/', {
-	recursive: true,
-}, function(error) {
-	if (error)
-		console.log(error);
-});
-fs.createWriteStream('./out/a.pdf').write(context.toBuffer());
+
+const path = './out/';
+if (!fs.existsSync(path))
+	fs.mkdirSync(path, true);
+fs.createWriteStream(path + 'a.pdf').write(context.toBuffer());
 
 // Write "Awesome!"
 /*
