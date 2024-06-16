@@ -39,7 +39,7 @@ const rules = {
 	'@jsdoc/no-blank-blocks': 'error',
 	'@jsdoc/no-defaults': 'error',
 	'@jsdoc/no-multi-asterisks': 'error',
-	'@jsdoc/no-types': 'error',
+	'@jsdoc/no-types': 'off',
 	'@jsdoc/no-undefined-types': 'error',
 	'@jsdoc/require-asterisk-prefix': 'error',
 	'@jsdoc/require-description': 'error',
