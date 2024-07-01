@@ -41,15 +41,10 @@ class Game {
 			this.ratio = Math.min(this.canvas.width, this.canvas.height) / size;
 			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.components.forEach(component => {
-				const data = [
-					component.position.x,
-					component.position.y,
-					component.size.x,
-					component.size.y,
-				].map(o => o * this.ratio);
-				if (component.source) {
+				const data = [component.position.x, component.position.y, component.size.x, component.size.y].map(o => o * this.ratio);
+				if (component.source)
 					this.context.drawImage(component.source, ...data);
-				}
+
 				else {
 					this.context.fillStyle = 'black';
 					this.context.fillRect(...data);
@@ -76,9 +71,9 @@ class Component {
 		if (source && typeof source === 'string') {
 			this.source = new Image();
 			this.source.src = source;
-		} else {
+		} else
 			this.source = source;
-		}
+
 		this.game = null;
 		this.size = {
 			x: 0,
@@ -133,62 +128,67 @@ setTimeout(() => {
 }, 2000);
 console.log(game, component);
 
-/*class Graphic {
-	constructor(context = null, ...build) {
-		this.context = context;
-		this.build = build;
-	}
-	draw(context = this.context) {
-		let n = 0;
-		this.build.forEach(o => {
-			n++;
-			try {
-				if (typeof o === 'string')
-					this.context[o]();
-				else if (Array.isArray(o))
-					this.context[o[0]](...o[1]);
-				else
-					Object.keys(o).forEach(k => {
-						this.context[k] = o[k];
-					});
-			} catch (e) {
-				console.log('Error: invalid parameter ' + n);
-			}
-		});
-	}
-	add(build, index) {}
-	clear() {
-		this.build = [];
-		if (this.context)
-			this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-	}
-}*/
+/*
+ *class Graphic {
+ *constructor(context = null, ...build) {
+ *this.context = context;
+ *this.build = build;
+ *}
+ *draw(context = this.context) {
+ *let n = 0;
+ *this.build.forEach(o => {
+ *	n++;
+ *	try {
+ *		if (typeof o === 'string')
+ *			this.context[o]();
+ *		else if (Array.isArray(o))
+ *			this.context[o[0]](...o[1]);
+ *		else
+ *			Object.keys(o).forEach(k => {
+ *				this.context[k] = o[k];
+ *			});
+ *	} catch (e) {
+ *		console.log('Error: invalid parameter ' + n);
+ *	}
+ *});
+ *}
+ *add(build, index) {}
+ *clear() {
+ *this.build = [];
+ *if (this.context)
+ *	this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+ *}
+ *}
+ */
 
 /*const canvas = document.getElementById('canvas');*/
 
 /** WEBGL */
-/*const ctx = canvas.getContext('webgl');
-if (ctx === null)
-	throw new Error('Unable to initialize WebGL. Your browser or machine may not support it.');
-ctx.clearColor(0.0, 0.0, 0.0, 1.0);
-ctx.clear(ctx.COLOR_BUFFER_BIT);*/
+/*
+ *const ctx = canvas.getContext('webgl');
+ *if (ctx === null)
+ *throw new Error('Unable to initialize WebGL. Your browser or machine may not support it.');
+ *ctx.clearColor(0.0, 0.0, 0.0, 1.0);
+ *ctx.clear(ctx.COLOR_BUFFER_BIT);
+ */
 
 /** CANVAS */
-/*const ctx = canvas.getContext('2d');
-ctx.moveTo(0, 100);
-ctx.lineTo(100, 0);
-ctx.stroke();
-ctx.beginPath();
-ctx.arc(50, 50, 50, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.font = '10px Arial';
-ctx.fillText('Hello World', 0, 50);
-
-const main = new Graphic(ctx, 'beginPath', ['moveTo', [0, 0]], ['lineTo', [100, 100]], {
-	strokeStyle: '#D00',
-}, 'stroke');
-main.draw();
-main.add();
-main.clear();
-main.draw();
-*/
+/*
+ *const ctx = canvas.getContext('2d');
+ *ctx.moveTo(0, 100);
+ *ctx.lineTo(100, 0);
+ *ctx.stroke();
+ *ctx.beginPath();
+ *ctx.arc(50, 50, 50, 0, 2 * Math.PI);
+ *ctx.stroke();
+ *ctx.font = '10px Arial';
+ *ctx.fillText('Hello World', 0, 50);
+ *
+ *const main = new Graphic(ctx, 'beginPath', ['moveTo', [0, 0]], ['lineTo', [100, 100]], {
+ *strokeStyle: '#D00',
+ *}, 'stroke');
+ *main.draw();
+ *main.add();
+ *main.clear();
+ *main.draw();
+ */
