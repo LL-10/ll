@@ -24,16 +24,23 @@ function request(message) {
 		console.error('Your browser does not support WebSockets.');
 }
 
+document.body.addEventListener('online', () => {
+	alert('You are online again.');
+});
+document.body.addEventListener('offline', () => {
+	alert('You are currently offline.');
+});
+
 const game = new Game();
 console.log(game);
-document.getElementById('start').onclick = event => {
+document.getElementById('start').addEventListener('click', event => {
 	event.target.style.display = 'none';
 	game.start();
 	setTimeout(() => {
 		game.stop();
 		document.getElementById('start').style.display = 'revert';
 	}, 5000);
-};
+});
 /*
  *const component = new Component('https://cache.modd.io/asset/spriteImage/1714657821294_pig.png');
  *component.position = {
