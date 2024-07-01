@@ -56,9 +56,9 @@ const data = [
 				 * value (the result of the comparison, always true when returned in the detailed object),
 				 * reference (true if all the references of the second object point to the first) and
 				 * deep (true if all circular reference in both objects point to the same place in theirselves).
-				 * @argument {boolean} [detailed=false]
-				 * @argument {object} object2
 				 * @argument {object} object1
+				 * @argument {object} object2
+				 * @argument {boolean} [detailed=false]
 				 * @return {boolean | object}
 				 * @example Object.compare({ a: 1, b: 2 }, { b: 2, a: 1 }); // true
 				 * @example Object.compare({ a: 1, b: 2 }, { x: 'hi' }); // false
@@ -177,8 +177,8 @@ const data = [
 				 * value (the result of the comparison, always true when returned in the detailed object),
 				 * reference (true if all the references of the compared object point to this object) and
 				 * deep (true if all circular reference in both objects point to the same place in theirselves).
-				 * @argument {boolean} [detailed=false]
 				 * @argument {object} object - The object to compare this object to.
+				 * @argument {boolean} [detailed=false]
 				 * @return {boolean | object}
 				 * @example { a: 1, b: 2 }.compare({ b: 2, a: 1 }); // true
 				 * @example { a: 1, b: 2 }.compare({ x: 'hi' }); // false
@@ -332,9 +332,9 @@ const data = [
 				 * @summary Clamp the value to within the min and max.
 				 * @function Math#clamp
 				 * @description If min > max, then their values are automatically swapped.
-				 * @argument {number} max
-				 * @argument {number} min
 				 * @argument {number} value
+				 * @argument {number} min
+				 * @argument {number} max
 				 * @return {number}
 				 * @example Math.clamp(3, 4, 5); // 4
 				 * @example Math.clamp(5, 0, 10); // 5
@@ -362,8 +362,8 @@ const data = [
 				/**
 				 * Calculate the distance from the first point to the second point.
 				 * @function Math#distance
-				 * @argument {number[]} y - The coordinates of the second point.
-				 * @argument {number[]} x - The coordinates of the first point.
+				 * @argument {number[]} a - The coordinates of the second point.
+				 * @argument {number[]} b - The coordinates of the first point.
 				 * @return {number}
 				 * @exception {Error} Both points must have the same number of coordinates.
 				 * @exception {TypeError} Both arguments must be arrays.
@@ -381,6 +381,22 @@ const data = [
 					if (a.length !== b.length)
 						throw new Error('Both points must have the same number of coordinates');
 					return Math.sqrt(Math.sum(...a.map((element, index) => Math.pow(element - b[index], 2))));
+				},
+			},
+			{
+				/**
+				 * Calculate the inclination angle in radians, given two points.
+				 * @function Math#inclination
+				 * @argument {number} x1 - The x coordinate of the first point.
+				 * @argument {number} y1 - The y coordinate of the first point.
+				 * @argument {number} x2 - The x coordinate of the second point.
+				 * @argument {number} y2 - The y coordinate of the second point.
+				 * @return {number}
+				 * @example Math.inclination(5, 6, 10, 3); // -1.4288992721907328
+				 */
+				name: 'inclination',
+				value: function(x1, x2, y1, y2) {
+					return Math.atan((y2 - y1) / (x2 - x1));
 				},
 			},
 			{
@@ -414,8 +430,8 @@ const data = [
 				 * @summary Return a random integer in the specified range.
 				 * @function Math#randomInt
 				 * @description If min > max, then their values are automatically swapped.
-				 * @argument {number} max
-				 * @argument {number} [min=0]
+				 * @argument {number} min
+				 * @argument {number} [max=0]
 				 * @return {number}
 				 * @example Math.randomInt(4, 6);
 				 */
