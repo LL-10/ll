@@ -1,17 +1,21 @@
-body {
-	margin: 0;
-	padding: 0;
-}
-
-canvas {
+html, body, canvas {
 	width: 100vw;
 	height: 100vh;
+	margin: 0;
+	padding: 0;
+	overflow: clip;
 }
 
 button {
 	font-size: 1.8rem;
 	padding: 0.6rem;
 	border-radius: 0.8rem;
+	color: white;
+	border-bottom: 0.3rem solid darkgreen;
+	border-left: 0.2rem solid darkgreen;
+	border-top: 0.1rem solid darkgreen;
+	border-right: 0.1rem solid darkgreen;
+	background: green;
 }
 
 #start {
