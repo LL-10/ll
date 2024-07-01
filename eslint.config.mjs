@@ -9,6 +9,11 @@ const languageOptions = {
 	globals: {
 		CanvasRenderingContext2D: 'readonly',
 		console: 'readonly',
+		document: 'readonly',
+		Image: 'readonly',
+		setInterval: 'readonly',
+		setTimeout: 'readonly',
+		window: 'readonly',
 	},
 };
 const linterOptions = {
@@ -134,7 +139,7 @@ const rules = {
 	],
 	'@stylistic/no-extra-semi': 'error',
 	'@stylistic/no-floating-decimal': 'error',
-	'@stylistic/no-mixed-operators': 'error',
+	'@stylistic/no-mixed-operators': 'off',
 	'@stylistic/no-mixed-spaces-and-tabs': 'error',
 	'@stylistic/no-multi-spaces': 'error',
 	'@stylistic/no-multiple-empty-lines': [
