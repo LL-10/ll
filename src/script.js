@@ -41,13 +41,21 @@ class Game {
 			this.ratio = Math.min(this.canvas.width, this.canvas.height) / size;
 			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.components.forEach(component => {
-				const data = [component.position.x, component.position.y, component.size.x, component.size.y].map(o => o * this.ratio);
+				const dx = (component.position.x + component.size.x / 2) * this.ratio;
+				const dy = (component.position.y + component.size.y / 2) * this.ratio;
+				const sx = component.size.x * this.ratio;
+				const sy = component.size.y * this.ratio;
+				const data = [dx, dy, sx, sy];
+				this.context.translate(dx, dy);
+				this.context.rotate(component.angle);
+				this.context.translate(-dx, -dy);
 				if (component.source)
 					this.context.drawImage(component.source, ...data);
 				else {
 					this.context.fillStyle = 'black';
 					this.context.fillRect(...data);
 				}
+				this.context.rotate(-component.angle);
 				component.position.x += component.velocity.x / this.frames;
 				component.position.y += component.velocity.y / this.frames;
 				component.velocity.x += component.acceleration.x / this.frames;
@@ -81,6 +89,7 @@ class Component {
 			x: 0,
 			y: 0,
 		};
+		this.angle = 0;
 		this.velocity = {
 			x: 0,
 			y: 0,
@@ -124,6 +133,7 @@ document.getElementById('start').onclick = event => {
 	event.target.style.display = 'none';
 	game.start();
 	component.velocity.x = 10;
+	component.angle = Math.radians(180);
 	setTimeout(() => {
 		component.stop();
 	}, 2000);
