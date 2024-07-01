@@ -41,18 +41,23 @@ class Game {
 			this.ratio = Math.min(this.canvas.width, this.canvas.height) / size;
 			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.components.forEach(component => {
+				const data = [
+					component.position.x,
+					component.position.y,
+					component.size.x,
+					component.size.y,
+				].map(o => o * this.ratio);
 				if (component.source) {
-					// TODO
+					this.context.drawImage(component.source, ...data);
 				}
 				else {
 					this.context.fillStyle = 'black';
-					this.context.fillRect(...[
-						component.position.x,
-						component.position.y,
-						component.size.x,
-						component.size.y,
-					].map(o => o * this.ratio));
+					this.context.fillRect(...data);
 				}
+				component.position.x += component.velocity.x / this.frames;
+				component.position.y += component.velocity.y / this.frames;
+				component.velocity.x += component.acceleration.x / this.frames;
+				component.velocity.y += component.acceleration.y / this.frames;
 			});
 		}, 1000 / this.frame);
 	}
@@ -68,23 +73,51 @@ class Game {
 
 class Component {
 	constructor(source = null) {
-		this.source = source;
+		if (source && typeof source === 'string') {
+			this.source = new Image();
+			this.source.src = source;
+		} else {
+			this.source = source;
+		}
 		this.game = null;
-		[
-			this.size,
-			this.position,
-			this.velocity,
-			this.acceleration,
-		] = Array(4).fill({
+		this.size = {
 			x: 0,
 			y: 0,
-		});
+		};
+		this.position = {
+			x: 0,
+			y: 0,
+		};
+		this.velocity = {
+			x: 0,
+			y: 0,
+		};
+		this.acceleration = {
+			x: 0,
+			y: 0,
+		};
+	}
+	stop() {
+		this.velocity = {
+			x: 0,
+			y: 0,
+		};
+		this.acceleration = {
+			x: 0,
+			y: 0,
+		};
+	}
+	move(x, y) {
+		this.position = {
+			x: x,
+			y: y,
+		};
 	}
 }
 
 const game = new Game();
 game.start();
-const component = new Component();
+const component = new Component('https://cache.modd.io/asset/spriteImage/1714657821294_pig.png');
 component.position = {
 	x: 100,
 	y: 100,
@@ -94,6 +127,8 @@ component.size = {
 	y: 100,
 };
 game.add(component);
+component.velocity.x = 10;
+setTimeout(() => component.stop(), 2000);
 console.log(game, component);
 
 /*class Graphic {
