@@ -33,13 +33,17 @@ class Game {
 		resolution = 500, // ppi
 	} = {}) {
 		document.body.insertBefore(this.view.canvas, document.body.firstChild);
-		setInterval(() => {
+		this.intervalID = setInterval(() => {
 			this.map.context.fillStyle = 'lightyellow';
 			this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
 			this.view.canvas.width = resolution * window.innerWidth / 96;
 			this.view.canvas.height = resolution * window.innerHeight / 96;
 			this.view.context.drawImage(this.map.canvas, 0, 0, this.map.canvas.width, this.map.canvas.height, 0, 0, this.view.canvas.width, this.view.canvas.height);
 		}, 1000 / frames);
+	}
+	stop() {
+		clearInterval(this.intervalID);
+		document.body.removeChild(this.view.canvas);
 	}
 }
 
