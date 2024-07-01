@@ -5,7 +5,8 @@
 require('./core/base.js');
 
 const fs = require('fs');
-//const childProcess = require('child_process');
+const crypto = require('crypto');
+//console.log(crypto.getHashes());
 
 const WebSocketServer = require('websocket').server;
 const http = require('http');
@@ -18,13 +19,13 @@ new WebSocketServer({
 	const connection = request.accept(null, request.origin);
 	connection.on('message', function(message) {
 		if (message.type === 'utf8') {
-			console.log(message.utf8Data);
-			connection.sendUTF(message.utf8Data);
+			console.log(crypto.createHash('sha256').update(message.utf8Data)
+				.digest('base64'));
+			connection.sendUTF(crypto.createHash('sha256').update(message.utf8Data)
+				.digest('base64'));
 		}
-		if (message.type === 'binary') {
+		if (message.type === 'binary')
 			console.log('Messaggio di dimensione: ' + message.binaryData.length + ' bytes');
-			connection.sendBytes(message.binaryData);
-		}
 	});
 	/*
 	 *connection.on('close', function(connection) {
