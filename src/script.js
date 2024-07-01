@@ -44,7 +44,6 @@ class Game {
 				const data = [component.position.x, component.position.y, component.size.x, component.size.y].map(o => o * this.ratio);
 				if (component.source)
 					this.context.drawImage(component.source, ...data);
-
 				else {
 					this.context.fillStyle = 'black';
 					this.context.fillRect(...data);
@@ -73,7 +72,6 @@ class Component {
 			this.source.src = source;
 		} else
 			this.source = source;
-
 		this.game = null;
 		this.size = {
 			x: 0,
@@ -127,41 +125,6 @@ setTimeout(() => {
 	component.stop();
 }, 2000);
 console.log(game, component);
-
-/*
- *class Graphic {
- *constructor(context = null, ...build) {
- *this.context = context;
- *this.build = build;
- *}
- *draw(context = this.context) {
- *let n = 0;
- *this.build.forEach(o => {
- *	n++;
- *	try {
- *		if (typeof o === 'string')
- *			this.context[o]();
- *		else if (Array.isArray(o))
- *			this.context[o[0]](...o[1]);
- *		else
- *			Object.keys(o).forEach(k => {
- *				this.context[k] = o[k];
- *			});
- *	} catch (e) {
- *		console.log('Error: invalid parameter ' + n);
- *	}
- *});
- *}
- *add(build, index) {}
- *clear() {
- *this.build = [];
- *if (this.context)
- *	this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
- *}
- *}
- */
-
-/*const canvas = document.getElementById('canvas');*/
 
 /** WEBGL */
 /*
