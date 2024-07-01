@@ -385,22 +385,6 @@ const data = [
 			},
 			{
 				/**
-				 * Calculate the inclination angle in radians, given two points.
-				 * @function Math#inclination
-				 * @argument {number} x1 - The x coordinate of the first point.
-				 * @argument {number} y1 - The y coordinate of the first point.
-				 * @argument {number} x2 - The x coordinate of the second point.
-				 * @argument {number} y2 - The y coordinate of the second point.
-				 * @return {number}
-				 * @example Math.inclination(5, 6, 10, 3); // -1.4288992721907328
-				 */
-				name: 'inclination',
-				value: function(x1, x2, y1, y2) {
-					return Math.atan((y2 - y1) / (x2 - x1));
-				},
-			},
-			{
-				/**
 				 * Return the product of the given arguments.
 				 * @function Math#prod
 				 * @argument {...number} factors
