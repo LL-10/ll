@@ -136,6 +136,11 @@ class Game {
  *.
  *.
  *.
+ *.
+ *.
+ *.
+ *.
+ *.
  * class Component {
  *constructor(source = null) {
  *if (source && typeof source === 'string') {
