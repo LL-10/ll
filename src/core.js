@@ -20,7 +20,9 @@ class Game {
 			}
 		};
 		const Camera = class Camera {
-			constructor(zoom, position) {}
+			constructor(options = {
+				wide: false,
+			}) {}
 		};
 		this.map = new Map(options.map.width, options.map.height);
 		this.view = new View();
@@ -34,7 +36,7 @@ class Game {
 		this.resolution = options.resolution || 500;
 		document.body.insertBefore(this.view.canvas, document.body.firstChild);
 		setInterval(() => {
-			this.map.context.fillStyle = 'black';//'lightyellow';
+			this.map.context.fillStyle = 'lightyellow';
 			this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
 			this.view.canvas.width = this.resolution * window.innerWidth / 96;
 			this.view.canvas.height = this.resolution * window.innerHeight / 96;
