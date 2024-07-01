@@ -128,7 +128,9 @@ component.size = {
 };
 game.add(component);
 component.velocity.x = 10;
-setTimeout(() => component.stop(), 2000);
+setTimeout(() => {
+	component.stop();
+}, 2000);
 console.log(game, component);
 
 /*class Graphic {
