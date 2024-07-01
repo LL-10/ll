@@ -109,7 +109,6 @@ class Component {
 }
 
 const game = new Game();
-game.start();
 const component = new Component('https://cache.modd.io/asset/spriteImage/1714657821294_pig.png');
 component.position = {
 	x: 100,
@@ -120,38 +119,12 @@ component.size = {
 	y: 100,
 };
 game.add(component);
-component.velocity.x = 10;
-setTimeout(() => {
-	component.stop();
-}, 2000);
-console.log(game, component);
 
-/** WEBGL */
-/*
- *const ctx = canvas.getContext('webgl');
- *if (ctx === null)
- *throw new Error('Unable to initialize WebGL. Your browser or machine may not support it.');
- *ctx.clearColor(0.0, 0.0, 0.0, 1.0);
- *ctx.clear(ctx.COLOR_BUFFER_BIT);
- */
-
-/** CANVAS */
-/*
- *const ctx = canvas.getContext('2d');
- *ctx.moveTo(0, 100);
- *ctx.lineTo(100, 0);
- *ctx.stroke();
- *ctx.beginPath();
- *ctx.arc(50, 50, 50, 0, 2 * Math.PI);
- *ctx.stroke();
- *ctx.font = '10px Arial';
- *ctx.fillText('Hello World', 0, 50);
- *
- *const main = new Graphic(ctx, 'beginPath', ['moveTo', [0, 0]], ['lineTo', [100, 100]], {
- *strokeStyle: '#D00',
- *}, 'stroke');
- *main.draw();
- *main.add();
- *main.clear();
- *main.draw();
- */
+document.getElementById('start').onclick = event => {
+	event.target.style.display = 'none';
+	game.start();
+	component.velocity.x = 10;
+	setTimeout(() => {
+		component.stop();
+	}, 2000);
+};
