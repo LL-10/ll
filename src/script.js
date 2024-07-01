@@ -30,17 +30,18 @@ document.getElementById('start').onclick = event => {
 	event.target.style.display = 'none';
 	game.start();
 };
-/*const component = new Component('https://cache.modd.io/asset/spriteImage/1714657821294_pig.png');
-component.position = {
-	x: 100,
-	y: 100,
-};
-component.size = {
-	x: 100,
-	y: 100,
-};
-component.rotation = Math.radians(180);
-//component.control = 2;
-component.speed = 1000;
-game.add(component);
-*/
+/*
+ *const component = new Component('https://cache.modd.io/asset/spriteImage/1714657821294_pig.png');
+ *component.position = {
+ *x: 100,
+ *y: 100,
+ *};
+ *component.size = {
+ *x: 100,
+ *y: 100,
+ *};
+ *component.rotation = Math.radians(180);
+ * //component.control = 2;
+ *component.speed = 1000;
+ *game.add(component);
+ */
