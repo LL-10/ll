@@ -2,6 +2,9 @@ class Game {
 	constructor({
 		map = {},
 	} = {}) {
+		const Interface = class Interface {
+			constructor() {}
+		}
 		const Map = class Map {
 			constructor({
 				width = 1000,
@@ -16,6 +19,9 @@ class Game {
 		const View = class View {
 			constructor() {
 				this.canvas = document.createElement('canvas');
+				this.canvas.addEventListener('contextmenu', (event) => {
+					event.preventDefault();
+				});
 				this.context = this.canvas.getContext('2d');
 			}
 		};
