@@ -29,6 +29,10 @@ console.log(game);
 document.getElementById('start').onclick = event => {
 	event.target.style.display = 'none';
 	game.start();
+	setTimeout(() => {
+		game.stop();
+		document.getElementById('start').style.display = 'revert';
+	}, 5000);
 };
 /*
  *const component = new Component('https://cache.modd.io/asset/spriteImage/1714657821294_pig.png');
