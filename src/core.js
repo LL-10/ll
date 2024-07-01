@@ -1,16 +1,16 @@
 class Game {
-	constructor(options = {
-		map: {
-			width: 1000,
-			height: 1000,
-		},
-	}) {
+	constructor({
+		map = {},
+	} = {}) {
 		const Map = class Map {
-			constructor(width = 1000, height = 1000) {
+			constructor({
+				width = 1000,
+				height = 1000,
+			} = {}) {
 				this.canvas = document.createElement('canvas');
+				this.canvas.width = width;
+				this.canvas.height = height;
 				this.context = this.canvas.getContext('2d');
-				this.context.width = width;
-				this.context.height = height;
 			}
 		};
 		const View = class View {
@@ -20,28 +20,26 @@ class Game {
 			}
 		};
 		const Camera = class Camera {
-			constructor(options = {
-				wide: false,
-			}) {}
+			constructor({
+				wide = false,
+			} = {}) {}
 		};
-		this.map = new Map(options.map.width, options.map.height);
+		this.map = new Map(map.width, map.height);
 		this.view = new View();
 		this.camera = new Camera();
 	}
-	start(options = {
-		frames: 80, // fps
-		resolution: 500, // ppi
-	}) {
-		this.frames = options.frames || 80;
-		this.resolution = options.resolution || 500;
+	start({
+		frames = 80, // fps
+		resolution = 500, // ppi
+	} = {}) {
 		document.body.insertBefore(this.view.canvas, document.body.firstChild);
 		setInterval(() => {
 			this.map.context.fillStyle = 'lightyellow';
 			this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
-			this.view.canvas.width = this.resolution * window.innerWidth / 96;
-			this.view.canvas.height = this.resolution * window.innerHeight / 96;
+			this.view.canvas.width = resolution * window.innerWidth / 96;
+			this.view.canvas.height = resolution * window.innerHeight / 96;
 			this.view.context.drawImage(this.map.canvas, 0, 0, this.map.canvas.width, this.map.canvas.height, 0, 0, this.view.canvas.width, this.view.canvas.height);
-		}, 1000 / this.frames);
+		}, 1000 / frames);
 	}
 }
 
