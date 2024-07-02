@@ -312,6 +312,80 @@ const data = [
 	},
 	{
 		/**
+		 * The built-in Function constructor.
+		 * @namespace Function
+		 * @global
+		 */
+		object: Function,
+		properties: [
+			{
+				/**
+				 * Return a new debounced function for the passing argument.
+				 * @function Function.debounce
+				 * @argument {Function} func
+				 * @argument {number} [period=100] - The threshold in milliseconds.
+				 * @argument {boolean} [asap=false] - If true, execute as soon as possible, else at the end of period.
+				 * @return {Function}
+				 * @example Function.debounce(myFunction, 1000);
+				 */
+				name: 'debounce',
+				value: function(func, period, asap) {
+					let main = func, timeout;
+					return function debounced() {
+						var obj = this, args = arguments;
+						function delayed() {
+							if (!asap)
+								main.apply(obj, args);
+							timeout = null;
+						}
+						if (timeout)
+							clearTimeout(timeout);
+						else if (asap)
+							main.apply(obj, args);
+						timeout = setTimeout(delayed, period);
+					};
+				},
+			},
+		],
+	},
+	{
+		/**
+		 * Any instance of {@link Function}.
+		 * @namespace Function&period;prototype
+		 */
+		object: Function.prototype,
+		properties: [
+			{
+				/**
+				 * Return a new debounced function for the passing argument.
+				 * @function Function&period;prototype#debounce
+				 * @argument {number} [period=100] - The threshold in milliseconds.
+				 * @argument {boolean} [asap=false] - If true, execute as soon as possible, else at the end of period.
+				 * @return {Function}
+				 * @example myFunction.debounce(1000);
+				 */
+				name: 'debounce',
+				value: function(period, asap) {
+					let main = this, timeout;
+					return function debounced() {
+						var obj = this, args = arguments;
+						function delayed() {
+							if (!asap)
+								main.apply(obj, args);
+							timeout = null;
+						}
+						if (timeout)
+							clearTimeout(timeout);
+						else if (asap)
+							main.apply(obj, args);
+						timeout = setTimeout(delayed, period);
+					};
+				},
+			},
+		],
+	},
+	{
+		/**
 		 * The built-in Math object.
 		 * @namespace Math
 		 * @global
