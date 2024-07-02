@@ -4,7 +4,7 @@
 
 require('./core/base.js');
 
-const fs = require('fs');
+//const fs = require('fs');
 const crypto = require('crypto');
 //console.log(crypto.getHashes());
 
