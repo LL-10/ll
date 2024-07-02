@@ -2,20 +2,10 @@
  * @file Eslint configuration file.
  */
 
+import globals from 'globals';
 import jsdoc from 'eslint-plugin-jsdoc';
 import stylistic from '@stylistic/eslint-plugin';
 
-const languageOptions = {
-	globals: {
-		CanvasRenderingContext2D: 'readonly',
-		console: 'readonly',
-		document: 'readonly',
-		Image: 'readonly',
-		setInterval: 'readonly',
-		setTimeout: 'readonly',
-		window: 'readonly',
-	},
-};
 const linterOptions = {
 	reportUnusedDisableDirectives: 'error',
 };
@@ -80,25 +70,32 @@ const rules = {
 	'@jsdoc/valid-types': 'off', // TODO some namespaces give error
 	'@stylistic/array-bracket-newline': 'error',
 	'@stylistic/array-bracket-spacing': 'error',
-	'@stylistic/array-element-newline': [
+	'@stylistic/array-element-newline': 'error',
+	'@stylistic/arrow-parens': [
 		'error',
-		{
-			multiline: true,
-		},
+		'as-needed',
 	],
-	'@stylistic/arrow-parens': ['error', 'as-needed'],
 	'@stylistic/arrow-spacing': 'error',
 	'@stylistic/block-spacing': 'error',
 	'@stylistic/brace-style': 'error',
-	'@stylistic/comma-dangle': ['error', 'always-multiline'],
+	'@stylistic/comma-dangle': [
+		'error',
+		'always-multiline',
+	],
 	'@stylistic/comma-spacing': 'error',
 	'@stylistic/comma-style': 'error',
 	'@stylistic/computed-property-spacing': 'error',
-	'@stylistic/dot-location': ['error', 'property'],
+	'@stylistic/dot-location': [
+		'error',
+		'property',
+	],
 	'@stylistic/eol-last': 'error',
 	'@stylistic/function-call-spacing': 'error',
 	'@stylistic/function-paren-newline': 'error',
-	'@stylistic/generator-star-spacing': ['error', 'both'],
+	'@stylistic/generator-star-spacing': [
+		'error',
+		'both',
+	],
 	'@stylistic/implicit-arrow-linebreak': 'error',
 	'@stylistic/indent': [
 		'error',
@@ -107,11 +104,17 @@ const rules = {
 			SwitchCase: 1,
 		},
 	],
-	'@stylistic/indent-binary-ops': ['error', 'tab'],
+	'@stylistic/indent-binary-ops': [
+		'error',
+		'tab',
+	],
 	'@stylistic/key-spacing': 'error',
 	'@stylistic/keyword-spacing': 'error',
 	'@stylistic/linebreak-style': 'error',
-	'@stylistic/lines-between-class-members': ['error', 'never'],
+	'@stylistic/lines-between-class-members': [
+		'error',
+		'never',
+	],
 	'@stylistic/max-len': [
 		'error',
 		{
@@ -126,7 +129,10 @@ const rules = {
 		},
 	],
 	'@stylistic/multiline-comment-style': 'error',
-	'@stylistic/multiline-ternary': ['error', 'always-multiline'],
+	'@stylistic/multiline-ternary': [
+		'error',
+		'always-multiline',
+	],
 	'@stylistic/new-parens': 'error',
 	'@stylistic/newline-per-chained-call': 'error',
 	'@stylistic/no-confusing-arrow': 'error',
@@ -156,7 +162,10 @@ const rules = {
 	],
 	'@stylistic/no-trailing-spaces': 'error',
 	'@stylistic/no-whitespace-before-property': 'error',
-	'@stylistic/nonblock-statement-body-position': ['error', 'below'],
+	'@stylistic/nonblock-statement-body-position': [
+		'error',
+		'below',
+	],
 	'@stylistic/object-curly-newline': [
 		'error',
 		{
@@ -165,11 +174,26 @@ const rules = {
 	],
 	'@stylistic/object-curly-spacing': 'error',
 	'@stylistic/object-property-newline': 'error',
-	'@stylistic/one-var-declaration-per-line': ['error', 'initializations'],
-	'@stylistic/operator-linebreak': ['error', 'after'],
-	'@stylistic/padded-blocks': ['error', 'never'],
-	'@stylistic/quotes': ['error', 'single'],
-	'@stylistic/quote-props': ['error', 'as-needed'],
+	'@stylistic/one-var-declaration-per-line': [
+		'error',
+		'initializations',
+	],
+	'@stylistic/operator-linebreak': [
+		'error',
+		'after',
+	],
+	'@stylistic/padded-blocks': [
+		'error',
+		'never',
+	],
+	'@stylistic/quotes': [
+		'error',
+		'single',
+	],
+	'@stylistic/quote-props': [
+		'error',
+		'as-needed',
+	],
 	'@stylistic/rest-spread-spacing': 'error',
 	'@stylistic/semi': 'error',
 	'@stylistic/semi-spacing': 'error',
@@ -189,10 +213,16 @@ const rules = {
 	'@stylistic/switch-colon-spacing': 'error',
 	'@stylistic/template-curly-spacing': 'error',
 	'@stylistic/template-tag-spacing': 'error',
-	'@stylistic/yield-star-spacing': ['error', 'both'],
+	'@stylistic/yield-star-spacing': [
+		'error',
+		'both',
+	],
 	'array-callback-return': 'error',
 	'constructor-super': 'error',
-	curly: ['error', 'multi'],
+	curly: [
+		'error',
+		'multi',
+	],
 	'for-direction': 'error',
 	'getter-return': 'error',
 	'no-async-promise-executor': 'error',
@@ -277,12 +307,47 @@ const settings = {
 
 export default [
 	{
-		ignores: ['docs/', 'node_modules/'],
+		ignores: [
+			'docs/',
+			'node_modules/',
+		],
 	},
 	{
 		files: ['**/*.js'],
+		ignores: ['**/src/*.js'],
 		languageOptions: {
-			...languageOptions,
+			globals: {
+				...globals.node,
+				CanvasRenderingContext2D: 'readonly',
+			},
+			sourceType: 'commonjs',
+		},
+		linterOptions: linterOptions,
+		plugins: plugins,
+		rules: rules,
+		settings: settings,
+	},
+	{
+		files: ['**/src/*.js'],
+		ignores: ['**/src/worker.js'],
+		languageOptions: {
+			globals: {
+				...globals.browser,
+				Game: 'readonly',
+			},
+			sourceType: 'commonjs',
+		},
+		linterOptions: linterOptions,
+		plugins: plugins,
+		rules: rules,
+		settings: settings,
+	},
+	{
+		files: ['**/src/worker.js'],
+		languageOptions: {
+			globals: {
+				...globals.worker,
+			},
 			sourceType: 'commonjs',
 		},
 		linterOptions: linterOptions,
@@ -293,7 +358,6 @@ export default [
 	{
 		files: ['**/*.mjs'],
 		languageOptions: {
-			...languageOptions,
 			sourceType: 'module',
 		},
 		linterOptions: linterOptions,
