@@ -324,15 +324,20 @@ const data = [
 				 * @function Function.debounce
 				 * @argument {Function} func
 				 * @argument {number} [period=100] - The threshold in milliseconds.
-				 * @argument {boolean} [asap=false] - If true, execute as soon as possible, else at the end of period.
+				 * @argument {boolean} [asap=false] - Run as soon as possible or at the end of period (default).
 				 * @return {Function}
 				 * @example Function.debounce(myFunction, 1000);
 				 */
 				name: 'debounce',
 				value: function(func, period, asap) {
-					let main = func, timeout;
+					let main = func,
+						timeout;
 					return function debounced() {
-						var obj = this, args = arguments;
+						var obj = this,
+							args = arguments;
+						/**
+						 * @ignore
+						 */
 						function delayed() {
 							if (!asap)
 								main.apply(obj, args);
@@ -357,18 +362,23 @@ const data = [
 		properties: [
 			{
 				/**
-				 * Return a new debounced function for the passing argument.
+				 * Return the debounced function; doesn't alter this function.
 				 * @function Function&period;prototype#debounce
 				 * @argument {number} [period=100] - The threshold in milliseconds.
-				 * @argument {boolean} [asap=false] - If true, execute as soon as possible, else at the end of period.
+				 * @argument {boolean} [asap=false] - Run as soon as possible or at the end of period (default).
 				 * @return {Function}
 				 * @example myFunction.debounce(1000);
 				 */
 				name: 'debounce',
 				value: function(period, asap) {
-					let main = this, timeout;
+					let main = this,
+						timeout;
 					return function debounced() {
-						var obj = this, args = arguments;
+						var obj = this,
+							args = arguments;
+						/**
+						 * @ignore
+						 */
 						function delayed() {
 							if (!asap)
 								main.apply(obj, args);
@@ -415,7 +425,13 @@ const data = [
 				 */
 				name: 'clamp',
 				value: function(value, min, max) {
-					[min, max] = [min, max].sort();
+					[
+						min,
+						max,
+					] = [
+						min,
+						max,
+					].sort();
 					return Math.min(Math.max(value, min), max);
 				},
 			},
@@ -495,7 +511,13 @@ const data = [
 				 */
 				name: 'randomInt',
 				value: function(min, max = 0) {
-					[min, max] = [min, max].sort();
+					[
+						min,
+						max,
+					] = [
+						min,
+						max,
+					].sort();
 					min = Math.ceil(min);
 					max = Math.floor(max);
 					return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -610,7 +632,7 @@ if (typeof console === 'object') {
 	 * Create dummy console.
 	 * @ignore
 	 */
-	// eslint-disable-next-line
+	// eslint-disable-next-line no-global-assign
 	console = {
 		log() {},
 		info() {},
