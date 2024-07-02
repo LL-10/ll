@@ -6,14 +6,18 @@ class Game {
 			constructor() {}
 		}
 		const Map = class Map {
-			constructor({
+			constructor() {
+				this.worker = new Worker('worker.js');
+			}
+			init({
 				width = 1000,
 				height = 1000,
 			} = {}) {
-				this.canvas = document.createElement('canvas');
-				this.canvas.width = width;
-				this.canvas.height = height;
-				this.context = this.canvas.getContext('2d');
+				this.worker.postMessage({
+					action: 'init',
+					width: width,
+					height: height,
+				});
 			}
 		};
 		const View = class View {
@@ -39,12 +43,22 @@ class Game {
 		resolution = 500, // ppi
 	} = {}) {
 		document.body.insertBefore(this.view.canvas, document.body.firstChild);
-		this.intervalID = setInterval(() => {
-			this.map.context.fillStyle = 'lightyellow';
-			this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
+		window.addEventListener('resize', (() => {
 			this.view.canvas.width = resolution * window.innerWidth / 96;
 			this.view.canvas.height = resolution * window.innerHeight / 96;
-			this.view.context.drawImage(this.map.canvas, 0, 0, this.map.canvas.width, this.map.canvas.height, 0, 0, this.view.canvas.width, this.view.canvas.height);
+		}).debounce(100));
+		this.map.init();
+		this.map.worker.postMessage({
+			action: 'render',
+		});
+		this.map.worker.addEventListener("message", (event) => {
+			this.map.canvas = event.data;
+			this.map.context = this.map.canvas.getContext('2d');
+			this.intervalID = setInterval(() => {
+				this.map.context.fillStyle = 'lightyellow';
+				this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
+				this.view.context.drawImage(this.map.canvas, 0, 0, this.map.canvas.width, this.map.canvas.height, 0, 0, this.view.canvas.width, this.view.canvas.height);
+			});
 		}, 1000 / frames);
 	}
 	stop() {
