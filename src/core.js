@@ -4,7 +4,7 @@ class Game {
 	} = {}) {
 		const Interface = class Interface {
 			constructor() {}
-		}
+		};
 		const Map = class Map {
 			constructor() {
 				this.worker = new Worker('worker.js');
@@ -23,7 +23,7 @@ class Game {
 		const View = class View {
 			constructor() {
 				this.canvas = document.createElement('canvas');
-				this.canvas.addEventListener('contextmenu', (event) => {
+				this.canvas.addEventListener('contextmenu', event => {
 					event.preventDefault();
 				});
 				this.context = this.canvas.getContext('2d');
