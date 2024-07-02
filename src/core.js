@@ -51,7 +51,7 @@ class Game {
 		this.map.worker.postMessage({
 			action: 'render',
 		});
-		this.map.worker.addEventListener("message", (event) => {
+		this.map.worker.addEventListener('message', event => {
 			this.map.canvas = event.data;
 			this.map.context = this.map.canvas.getContext('2d');
 			this.intervalID = setInterval(() => {

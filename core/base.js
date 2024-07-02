@@ -330,9 +330,14 @@ const data = [
 				 */
 				name: 'debounce',
 				value: function(func, period, asap) {
-					let main = func, timeout;
+					let main = func,
+						timeout;
 					return function debounced() {
-						var obj = this, args = arguments;
+						var obj = this,
+							args = arguments;
+						/**
+						 * @example
+						 */
 						function delayed() {
 							if (!asap)
 								main.apply(obj, args);
@@ -366,9 +371,14 @@ const data = [
 				 */
 				name: 'debounce',
 				value: function(period, asap) {
-					let main = this, timeout;
+					let main = this,
+						timeout;
 					return function debounced() {
-						var obj = this, args = arguments;
+						var obj = this,
+							args = arguments;
+						/**
+						 * @example
+						 */
 						function delayed() {
 							if (!asap)
 								main.apply(obj, args);
