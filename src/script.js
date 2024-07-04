@@ -32,7 +32,6 @@ document.body.addEventListener('offline', () => {
 });
 
 const game = new Game();
-console.log(game);
 document.getElementById('start').addEventListener('click', event => {
 	event.target.style.display = 'none';
 	game.start();
