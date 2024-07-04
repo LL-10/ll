@@ -4,9 +4,7 @@
 
 // eslint-disable-next-line no-unused-vars
 class Game {
-	constructor({
-		map = {},
-	} = {}) {
+	constructor() {
 		const Interface = class Interface {
 			constructor(...nodes) {}
 			load() {}
@@ -34,13 +32,19 @@ class Game {
 				});
 				this.context = this.canvas.getContext('2d');
 			}
+			init({
+				resolution = 500,
+			} = {}) {
+				this.canvas.width = resolution * window.innerWidth / 96;
+				this.canvas.height = resolution * window.innerHeight / 96;
+			}
 		};
 		const Camera = class Camera {
 			constructor({
 				wide = false,
 			} = {}) {}
 		};
-		this.map = new Map(map.width, map.height);
+		this.map = new Map();
 		this.view = new View();
 		this.camera = new Camera();
 		this.interfaces = {
@@ -53,9 +57,9 @@ class Game {
 		resolution = 500, // ppi
 	} = {}) {
 		document.body.insertBefore(this.view.canvas, document.body.firstChild);
+		this.view.init(resolution);
 		window.addEventListener('resize', (() => {
-			this.view.canvas.width = resolution * window.innerWidth / 96;
-			this.view.canvas.height = resolution * window.innerHeight / 96;
+			this.view.init();
 		}).debounce(100));
 		this.map.init();
 		this.map.worker.postMessage({
