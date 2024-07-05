@@ -5,38 +5,72 @@
 // eslint-disable-next-line no-unused-vars
 class Game {
 	constructor() {
+		const worker = new Worker('worker.js');
+		this.worker = worker;
 		const Interface = class Interface {
-			constructor(...nodes) {}
+			constructor(...nodes) {
+				this.nodes = nodes;
+			}
 			load() {}
 		};
 		const Map = class Map {
 			constructor() {
-				this.worker = new Worker('worker.js');
+				this.canvas = new OffscreenCanvas(0, 0);
 			}
-			init({
+			init() {
+				worker.postMessage({
+					action: 'init',
+					origin: this.constructor.name.toLowerCase(),
+					canvas: this.canvas,
+				}, [this.canvas]);
+			}
+			config({
 				width = 1000,
 				height = 1000,
 			} = {}) {
-				this.worker.postMessage({
-					action: 'init',
-					width: width,
-					height: height,
+				worker.postMessage({
+					action: 'config',
+					origin: this.constructor.name.toLowerCase(),
+					opts: {
+						width,
+						height,
+					},
 				});
 			}
 		};
 		const View = class View {
 			constructor() {
-				this.canvas = document.createElement('canvas');
-				this.canvas.addEventListener('contextmenu', event => {
+				this.container = document.createElement('canvas');
+				this.container.addEventListener('contextmenu', event => {
 					event.preventDefault();
 				});
-				this.context = this.canvas.getContext('2d');
+				this.canvas = this.container.transferControlToOffscreen();
 			}
-			init({
+			init() {
+				worker.postMessage({
+					action: 'init',
+					origin: this.constructor.name.toLowerCase(),
+					canvas: this.canvas,
+				}, [this.canvas]);
+			}
+			config({
 				resolution = 500,
 			} = {}) {
-				this.canvas.width = resolution * window.innerWidth / 96;
-				this.canvas.height = resolution * window.innerHeight / 96;
+				worker.postMessage({
+					action: 'config',
+					origin: this.constructor.name.toLowerCase(),
+					opts: {
+						resolution,
+						width: window.innerWidth,
+						height: window.innerHeight,
+					},
+				});
+			}
+			start() {
+				worker.postMessage({
+					action: 'start',
+					origin: this.constructor.name.toLowerCase(),
+				});
 			}
 		};
 		const Camera = class Camera {
@@ -46,7 +80,9 @@ class Game {
 		};
 		this.map = new Map();
 		this.view = new View();
+		this.view.init();
 		this.camera = new Camera();
+		this.map.init();
 		this.interfaces = {
 			before: new Interface(),
 			main: new Interface(),
@@ -56,38 +92,53 @@ class Game {
 		frames = 80, // fps
 		resolution = 500, // ppi
 	} = {}) {
-		document.body.insertBefore(this.view.canvas, document.body.firstChild);
-		this.view.init(resolution);
-		window.addEventListener('resize', (() => {
-			this.view.init();
-		}).debounce(100));
-		this.map.init();
-		this.map.worker.postMessage({
-			action: 'render',
-		});
-		this.map.worker.addEventListener('message', event => {
-			this.map.canvas = event.data;
-			this.map.context = this.map.canvas.getContext('2d');
-			this.intervalID = setInterval(() => {
-				this.map.context.fillStyle = 'lightyellow';
-				this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
-				this.view.context.drawImage(this.map.canvas, ...[
-					0,
-					0,
-					this.map.canvas.width,
-					this.map.canvas.heigh,
-				], ...[
-					0,
-					0,
-					this.view.canvas.width,
-					this.view.canvas.height,
-				]);
+		document.body.insertBefore(this.view.container, document.body.firstChild);
+		this.map.config();
+		this.view.start();
+		this.intervalID = setInterval(() => {
+			this.view.config(resolution);
+			this.worker.postMessage({
+				action: 'render',
 			});
 		}, 1000 / frames);
+		//const context = offscreen.getContext('2d');
+		//context.fillStyle = 'lightyellow';
+		//context.fillRect(0, 0, offscreen.width, offscreen.height);
+		this.worker.addEventListener('message', event => {
+			console.log(event.data);
+		});
+		//window.addEventListener('resize', (() => {
+		//	this.view.init();
+		//}).debounce(100));
+		//this.map.init();
+		//this.map.worker.postMessage({
+		//	action: 'render',
+		//});
+		//this.map.worker.addEventListener('message', event => {
+		//	this.map.canvas = event.data;
+		//	this.map.context = this.map.canvas.getContext('2d');
+		//	this.intervalID = setInterval(() => {
+		//		this.map.context.fillStyle = 'lightyellow';
+		//		this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
+		//		this.view.context.drawImage(this.map.canvas.transferToImageBitmap(), ...[
+		//			0,
+		//			0,
+		//			this.map.canvas.width,
+		//			this.map.canvas.heigh,
+		//		], ...[
+		//			0,
+		//			0,
+		//			this.view.canvas.width,
+		//			this.view.canvas.height,
+		//		]);
+		//	}, 1000 / frames);
+		//}, {
+		//	once: true,
+		//});
 	}
 	stop() {
 		clearInterval(this.intervalID);
-		document.body.removeChild(this.view.canvas);
+		document.body.removeChild(this.view.container);
 	}
 }
 
