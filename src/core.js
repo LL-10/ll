@@ -91,6 +91,10 @@ class Game {
 	start({
 		frames = 80, // fps
 		resolution = 500, // ppi
+		map: {
+			width = 1000,
+			height = 1000,
+		} = {},
 	} = {}) {
 		document.body.insertBefore(this.view.container, document.body.firstChild);
 		this.map.config();
