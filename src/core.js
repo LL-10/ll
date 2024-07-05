@@ -101,40 +101,44 @@ class Game {
 				action: 'render',
 			});
 		}, 1000 / frames);
-		//const context = offscreen.getContext('2d');
-		//context.fillStyle = 'lightyellow';
-		//context.fillRect(0, 0, offscreen.width, offscreen.height);
+		/*
+		 * const context = offscreen.getContext('2d');
+		 * context.fillStyle = 'lightyellow';
+		 * context.fillRect(0, 0, offscreen.width, offscreen.height);
+		 */
 		this.worker.addEventListener('message', event => {
 			console.log(event.data);
 		});
-		//window.addEventListener('resize', (() => {
-		//	this.view.init();
-		//}).debounce(100));
-		//this.map.init();
-		//this.map.worker.postMessage({
-		//	action: 'render',
-		//});
-		//this.map.worker.addEventListener('message', event => {
-		//	this.map.canvas = event.data;
-		//	this.map.context = this.map.canvas.getContext('2d');
-		//	this.intervalID = setInterval(() => {
-		//		this.map.context.fillStyle = 'lightyellow';
-		//		this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
-		//		this.view.context.drawImage(this.map.canvas.transferToImageBitmap(), ...[
-		//			0,
-		//			0,
-		//			this.map.canvas.width,
-		//			this.map.canvas.heigh,
-		//		], ...[
-		//			0,
-		//			0,
-		//			this.view.canvas.width,
-		//			this.view.canvas.height,
-		//		]);
-		//	}, 1000 / frames);
-		//}, {
-		//	once: true,
-		//});
+		/*
+		 * window.addEventListener('resize', (() => {
+		 * 	this.view.init();
+		 * }).debounce(100));
+		 * this.map.init();
+		 * this.map.worker.postMessage({
+		 * 	action: 'render',
+		 * });
+		 * this.map.worker.addEventListener('message', event => {
+		 * 	this.map.canvas = event.data;
+		 * 	this.map.context = this.map.canvas.getContext('2d');
+		 * 	this.intervalID = setInterval(() => {
+		 * 		this.map.context.fillStyle = 'lightyellow';
+		 * 		this.map.context.fillRect(0, 0, this.map.canvas.width, this.map.canvas.height);
+		 * 		this.view.context.drawImage(this.map.canvas.transferToImageBitmap(), ...[
+		 * 			0,
+		 * 			0,
+		 * 			this.map.canvas.width,
+		 * 			this.map.canvas.heigh,
+		 * 		], ...[
+		 * 			0,
+		 * 			0,
+		 * 			this.view.canvas.width,
+		 * 			this.view.canvas.height,
+		 * 		]);
+		 * 	}, 1000 / frames);
+		 * }, {
+		 * 	once: true,
+		 * });
+		 */
 	}
 	stop() {
 		clearInterval(this.intervalID);
