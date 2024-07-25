@@ -265,9 +265,9 @@ class Game {
  *y: 0,
  *};
  *//**
- * @summary How this component moves.
- * @description 0 = no control; 1 = moves on key/touch event; 2 = constantly moves towards cursor/touch.
- *//*
+    * @summary How this component moves.
+    * @description 0 = no control; 1 = moves on key/touch event; 2 = constantly moves towards cursor/touch.
+    *//*
 		this.control = 0;
 	}
 	get speed() {
