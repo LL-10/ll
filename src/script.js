@@ -37,7 +37,7 @@ document.getElementById('start').addEventListener('click', event => {
 	game.start();
 	(() => {
 		game.stop();
-		document.getElementById('start').style.display = null;
+		event.target.style.display = null;
 	}).debounce(5000)();
 });
 /*
